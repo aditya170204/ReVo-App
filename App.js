@@ -19,7 +19,12 @@ const App = () => {
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="DASHBOARD"
-        screenOptions={{ tabBarActiveColor: "#9A4D49" }}
+        screenOptions={{
+          // headerShown: false,
+          tabBarShowLabel: false,
+          tabBarActiveTintColor: "white",
+          tabBarActiveBackgroundColor: "#9A4D49",
+        }}
       >
         <Tab.Screen
           name="DASHBOARD"
