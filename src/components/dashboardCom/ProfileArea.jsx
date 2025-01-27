@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { useNavigation } from "@react-navigation/native";
 
 const ProfileArea = () => {
+  const navigation = useNavigation();
+
   return (
     <View
       style={{
@@ -14,14 +17,17 @@ const ProfileArea = () => {
       }}
     >
       <View style={{ flexDirection: "row" }}>
-        <View
+        <TouchableOpacity
           style={{
             alignItems: "center",
             width: "15%",
           }}
+          onPress={() => {
+            navigation.navigate("ProfileDetails");
+          }}
         >
           <FontAwesome name={"user-circle-o"} size={35} />
-        </View>
+        </TouchableOpacity>
         <View style={{ width: "65%" }}>
           <Text style={{ fontWeight: "semibold", fontSize: 20 }}>Hi</Text>
           <Text style={{ fontWeight: "semibold", fontSize: 20 }}>

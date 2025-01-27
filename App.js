@@ -13,70 +13,86 @@ import Users from "./src/components/Users";
 import Teams from "./src/components/Teams";
 import Attendance from "./src/components/Attendance";
 import Leaves from "./src/components/Leaves";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
+// import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+const BottomTab = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="DASHBOARD"
+      screenOptions={{
+        // headerShown: false,
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: "white",
+        tabBarActiveBackgroundColor: "#9A4D49",
+      }}
+    >
+      <Tab.Screen
+        name="DASHBOARD"
+        component={Dashboard}
+        options={{
+          tabBarIcon: ({ color, focused, size }) => {
+            return <MaterialIcons name="dashboard" size={30} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="USERS"
+        component={Users}
+        options={{
+          tabBarIcon: ({ color, focused, size }) => {
+            return <FontAwesome5 name="users" size={25} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="TEAMS"
+        component={Teams}
+        options={{
+          tabBarIcon: ({ color, focussed, size }) => {
+            return <FontAwesome6 name="people-group" size={25} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="ATTENDANCE"
+        component={Attendance}
+        options={{
+          tabBarIcon: ({ color, focussed, size }) => {
+            return <FontAwesome6 name="calendar-check" size={25} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="LEAVES"
+        component={Leaves}
+        options={{
+          tabBarIcon: ({ color, focussed, size }) => {
+            return (
+              <MaterialCommunityIcons name="calendar-range-outline" size={30} />
+            );
+          },
+        }}
+      />
+    </Tab.Navigator>
+  );
+};
+
 const App = () => {
-  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="DASHBOARD"
+      <Stack.Navigator
         screenOptions={{
-          // headerShown: false,
-          tabBarShowLabel: false,
-          tabBarActiveTintColor: "white",
-          tabBarActiveBackgroundColor: "#9A4D49",
+          headerShown: false,
         }}
       >
-        <Tab.Screen
-          name="DASHBOARD"
-          component={Dashboard}
-          options={{
-            tabBarIcon: ({ color, focused, size }) => {
-              return <MaterialIcons name="dashboard" size={30} />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="USERS"
-          component={Users}
-          options={{
-            tabBarIcon: ({ color, focused, size }) => {
-              return <FontAwesome5 name="users" size={25} />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="TEAMS"
-          component={Teams}
-          options={{
-            tabBarIcon: ({ color, focussed, size }) => {
-              return <FontAwesome6 name="people-group" size={25} />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="ATTENDANCE"
-          component={Attendance}
-          options={{
-            tabBarIcon: ({ color, focussed, size }) => {
-              return <FontAwesome6 name="calendar-check" size={25} />;
-            },
-          }}
-        />
-        <Tab.Screen
-          name="LEAVES"
-          component={Leaves}
-          options={{
-            tabBarIcon: ({ color, focussed, size }) => {
-              return (
-                <MaterialCommunityIcons
-                  name="calendar-range-outline"
-                  size={30}
-                />
-              );
-            },
-          }}
-        />
-      </Tab.Navigator>
+        <Stack.Screen name="BottomTab" component={BottomTab} />
+        <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };

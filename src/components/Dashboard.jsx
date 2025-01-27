@@ -1,154 +1,37 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 import React from "react";
+import CountCard from "../myComponents/CountCard";
+import CountCard2 from "../myComponents/CountCard2";
+import GraphCard from "../myComponents/GraphCard";
+import ProfileArea from "./dashboardCom/ProfileArea";
 
 const Dashboard = () => {
+  let bord = true;
+
   return (
     <ScrollView style={{ marginHorizontal: 20 }}>
       <View
         style={{
-          // width: "100%",
-          // alignItems: "center",
           gap: 20,
-          // flex: 1,
-          // marginBottom: 500,
+          marginBottom: 5,
         }}
       >
-        <View style={{ alignItems: "center" }}>
-          <Text>Profile Area</Text>
+        <View>
+          <ProfileArea />
         </View>
-        <View
-          style={{
-            width: "100%",
-            height: 300,
-            borderWidth: 1,
-            borderRadius: 20,
-            alignItems: "center",
-          }}
-        >
-          <Text
-            style={{
-              marginTop: 10,
-              fontFamily: "roboto",
-              fontSize: 25,
-              color: "#2B2B2B",
-              borderColor: "red",
-              borderWidth: 1,
-              marginBottom: 10,
-            }}
-          >
-            Employees Status
-          </Text>
-          <View
-            style={{ width: "60%", borderWidth: 1, borderColor: "#5D5D5D" }}
-          />
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: "row",
-              borderWidth: 1,
-              borderColor: "green",
-              width: "80%",
-              gap: 10,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 90,
-                backgroundColor: "blue",
-                height: "85%",
-                width: "45%",
-              }}
-            >
-              <Text style={{ color: "white" }}>graph</Text>
-            </View>
-            <View
-              style={{
-                justifyContent: "center",
-                height: "75%",
-                width: "45%",
-                backgroundColor: "yellow",
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-            </View>
-          </View>
-        </View>
+        <GraphCard
+          border={true}
+          sectionTitle={"Employees Status"}
+          graphName={"BOSTONS"}
+          arrtitles={[
+            { color: "#E9A80A", title: "NEW" },
+            { color: "#FF8A00", title: "DRAFT" },
+            { color: "#4ABC04", title: "ACTIVE" },
+            { color: "#740707", title: "DEACTIVATED" },
+            { color: "#FF0000", title: "REJECTED" },
+          ]}
+        />
         <View
           style={{
             width: "100%",
@@ -159,51 +42,28 @@ const Dashboard = () => {
             padding: 20,
           }}
         >
-          <View style={{ flexDirection: "row", columnGap: 60 }}>
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                height: 40,
-                justifyContent: "center",
-              }}
-            >
-              <Text>employe score</Text>
-            </View>
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                height: 40,
-                justifyContent: "center",
-              }}
-            >
-              <Text>employe score</Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: "row", columnGap: 60 }}>
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                height: 40,
-                justifyContent: "center",
-              }}
-            >
-              <Text>employe score</Text>
-            </View>
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 10,
-                height: 40,
-                justifyContent: "center",
-              }}
-            >
-              <Text>employe score</Text>
-            </View>
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              flexWrap: "wrap",
+              gap: 20,
+            }}
+          >
+            <CountCard count={"44"} title="Present Employee" />
+            <CountCard count={"03"} title="Employees Absent" />
+            <CountCard count={"09"} title="Leave Applications" />
+            <CountCard count={"03"} title="New Employees Added" />
           </View>
         </View>
+        <CountCard2
+          arrData={[
+            { a: 10, b: "sdfds msdfsd" },
+            { a: 20, b: " msdfsd" },
+            { a: 30, b: "sdfds " },
+            { a: 40, b: "sdfdsfsd" },
+          ]}
+        />
         <View
           style={{
             width: "100%",
@@ -212,179 +72,24 @@ const Dashboard = () => {
             alignItems: "center",
           }}
         >
-          <Text
-            style={{
-              marginTop: 10,
-              fontFamily: "roboto",
-              fontSize: 25,
-              color: "#2B2B2B",
-              borderColor: "red",
-              borderWidth: 1,
-              marginBottom: 10,
-            }}
-          >
-            Working Days This Year
-          </Text>
-          <View
-            style={{ width: "60%", borderWidth: 1, borderColor: "green" }}
+          <GraphCard
+            sectionTitle={"Working Days This Year"}
+            graphName={"YEARLY"}
+            arrtitles={[
+              { color: "#0095FF", title: "WORKING DAYS" },
+              { color: "#4ABC04", title: "PUBLIC HOLIDAYS" },
+            ]}
           />
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: "row",
-              borderWidth: 1,
-              borderColor: "green",
-              width: "80%",
-              gap: 10,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 100,
-                backgroundColor: "blue",
-                height: 300,
-                width: "45%",
-              }}
-            >
-              <Text style={{ color: "white" }}>graph</Text>
-            </View>
 
-            <View
-              style={{
-                justifyContent: "center",
-                height: 100,
-                width: "45%",
-                backgroundColor: "yellow",
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-            </View>
-          </View>
-          <Text
-            style={{
-              marginTop: 10,
-              fontFamily: "roboto",
-              fontSize: 25,
-              color: "#2B2B2B",
-              borderColor: "red",
-              borderWidth: 1,
-              marginBottom: 10,
-            }}
-          >
-            Working Days This Month
-          </Text>
-          <View
-            style={{ width: "60%", borderWidth: 1, borderColor: "#5D5D5D" }}
+          <GraphCard
+            graphSize={"normal"}
+            sectionTitle={"Working Days This Month"}
+            graphName={"MONTHLY"}
+            arrtitles={[
+              { color: "#F6C244", title: "WORKING DAYS" },
+              { color: "#FF8A00", title: "PUBLIC HOLIDAYS" },
+            ]}
           />
-          <View
-            style={{
-              marginTop: 20,
-              flexDirection: "row",
-              borderWidth: 1,
-              borderColor: "green",
-              width: "80%",
-              gap: 10,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                borderRadius: 90,
-                backgroundColor: "blue",
-                height: "100",
-                width: "45%",
-              }}
-            >
-              <Text style={{ color: "white" }}>graph</Text>
-            </View>
-            <View
-              style={{
-                justifyContent: "center",
-                height: 200,
-                width: "45%",
-                backgroundColor: "yellow",
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: 10,
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: "red",
-                    height: 10,
-                    width: 10,
-                    borderRadius: 10,
-                  }}
-                />
-                <Text>things on graph !</Text>
-              </View>
-            </View>
-          </View>
         </View>
       </View>
     </ScrollView>
