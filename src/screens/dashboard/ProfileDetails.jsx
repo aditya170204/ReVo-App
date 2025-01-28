@@ -29,9 +29,9 @@ const ProfileDetails = () => {
             style={{ padding: 15 }}
             onPress={() => navigation.goBack()}
           >
-            <FontAwesome name={"chevron-left"} size={25} />
+            <FontAwesome name={"chevron-left"} size={30} />
           </TouchableOpacity>
-          <Text style={{ fontSize: 20, fontWeight: "bold", padding: 11 }}>
+          <Text style={{ fontSize: 25, fontWeight: "bold", padding: 11 }}>
             Profile Details
           </Text>
         </View>
@@ -43,13 +43,13 @@ const ProfileDetails = () => {
               justifyContent: "center",
               bottom: 30,
               start: 60,
-              backgroundColor: "white",
+              backgroundColor: "#D0837F",
               width: 40,
               height: 40,
               borderRadius: 50,
             }}
           >
-            <FontAwesome name={"camera"} size={27} color={"#9A4D49"} />
+            <FontAwesome name={"camera"} size={24} color={"white"} />
           </View>
         </View>
         <View>

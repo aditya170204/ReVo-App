@@ -10,7 +10,10 @@ const Dashboard = () => {
   let bord = true;
 
   return (
-    <ScrollView style={{ marginHorizontal: 20 }}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={{ marginHorizontal: 20, marginTop: 50 }}
+    >
       <View
         style={{
           gap: 20,

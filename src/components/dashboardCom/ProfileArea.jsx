@@ -38,8 +38,20 @@ const ProfileArea = () => {
           </Text>
         </View>
         <View style={{ flexDirection: "row", gap: 15 }}>
-          <MaterialCommunityIcons name={"bell"} size={25} />
-          <AntDesign name={"setting"} size={25} />
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Notification");
+            }}
+          >
+            <MaterialCommunityIcons name={"bell"} size={25} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Settings");
+            }}
+          >
+            <AntDesign name={"setting"} size={25} />
+          </TouchableOpacity>
         </View>
       </View>
       <View>

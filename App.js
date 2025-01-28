@@ -15,6 +15,8 @@ import Attendance from "./src/components/Attendance";
 import Leaves from "./src/components/Leaves";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
+import Notification from "./src/screens/dashboard/Notification";
+import Settings from "./src/screens/dashboard/Settings";
 // import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
 
 const Stack = createNativeStackNavigator();
@@ -25,7 +27,7 @@ const BottomTab = () => {
     <Tab.Navigator
       initialRouteName="DASHBOARD"
       screenOptions={{
-        // headerShown: false,
+        headerShown: false,
         tabBarShowLabel: false,
         tabBarActiveTintColor: "white",
         tabBarActiveBackgroundColor: "#9A4D49",
@@ -92,6 +94,8 @@ const App = () => {
       >
         <Stack.Screen name="BottomTab" component={BottomTab} />
         <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
+        <Stack.Screen name="Notification" component={Notification} />
+        <Stack.Screen name="Settings" component={Settings} />
       </Stack.Navigator>
     </NavigationContainer>
   );

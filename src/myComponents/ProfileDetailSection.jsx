@@ -17,7 +17,7 @@ const ProfileDetailSection = ({ sectionTitle }) => {
       <View
         style={{
           borderWidth: 1,
-          borderColor: "#9A4D49",
+          borderColor: "#D0837F",
           width: "94%",
           marginLeft: 10,
           marginBottom: 15,
