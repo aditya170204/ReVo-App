@@ -9,6 +9,7 @@ const CountCard2 = ({ arrData }) => {
         width: "100%",
         borderWidth: 1,
         borderRadius: 20,
+        borderColor: "#7C7C7C",
         alignItems: "center",
         rowGap: 20,
         padding: 20,

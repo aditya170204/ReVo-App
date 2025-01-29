@@ -17,6 +17,7 @@ const GraphCard = ({
         borderWidth: border ? 1 : 0,
         borderRadius: 20,
         alignItems: "center",
+        borderColor: "#7C7C7C",
       }}
     >
       <Text

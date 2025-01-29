@@ -1,9 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const EmployeeCard = () => {
+const EmployeeCard = ({ name, id, email, mobileNo }) => {
   return (
-    <View style={{ borderWidth: 1, borderRadius: 10 }}>
+    <View
+      style={{
+        borderWidth: 1,
+        borderRadius: 10,
+        borderColor: "#7C7C7C",
+        marginTop: 20,
+      }}
+    >
       <View
         style={{
           flexDirection: "row",
@@ -14,8 +22,8 @@ const EmployeeCard = () => {
         <View
           key={"a"}
           style={{
-            width: "10%",
-            height: "40%",
+            width: 40,
+            height: 40,
             backgroundColor: "#E9A80A",
             borderRadius: 50,
             justifyContent: "center",
@@ -46,12 +54,12 @@ const EmployeeCard = () => {
             }}
           >
             <View>
-              <Text>Employee Name :</Text>
-              <Text>aditya</Text>
+              <Text style={{ fontWeight: "600" }}>Employee Name :</Text>
+              <Text>{name}</Text>
             </View>
             <View>
-              <Text>Employee Id :</Text>
-              <Text>aditya</Text>
+              <Text style={{ fontWeight: "600" }}>Email Address :</Text>
+              <Text>{email}</Text>
             </View>
           </View>
           <View
@@ -65,12 +73,12 @@ const EmployeeCard = () => {
             }}
           >
             <View>
-              <Text>Email Address :</Text>
-              <Text>aditya</Text>
+              <Text style={{ fontWeight: "600" }}>Employee Id :</Text>
+              <Text>{id}</Text>
             </View>
             <View>
-              <Text>Mobile Number :</Text>
-              <Text>aditya</Text>
+              <Text style={{ fontWeight: "600" }}>Mobile Number :</Text>
+              <Text>{mobileNo}</Text>
             </View>
           </View>
         </View>
@@ -80,34 +88,63 @@ const EmployeeCard = () => {
           flexDirection: "row",
           justifyContent: "space-around",
           borderTopWidth: 1,
+          borderColor: "#7C7C7C",
+          // paddingVertical: 10,
         }}
       >
-        <View
+        <TouchableOpacity
           style={{
-            borderRightWidth: 1,
+            // borderRightWidth: 1,
             width: "33.5%",
-            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: 10,
+            marginVertical: 10,
           }}
         >
-          <Text>aadi</Text>
-        </View>
-        <View
+          <FontAwesome
+            name={"exclamation-circle"}
+            size={23}
+            color={"#7C7C7C"}
+          />
+          <Text style={{ fontSize: 15, fontWeight: "bold", color: "#7C7C7C" }}>
+            PENDING
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             borderRightWidth: 1,
+            borderLeftWidth: 1,
+            borderColor: "#7C7C7C",
             width: "33.3%",
-            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: 10,
           }}
         >
-          <Text>aadi</Text>
-        </View>
-        <View
+          <FontAwesome name={"check-circle"} size={23} color={"#7C7C7C"} />
+
+          <Text style={{ fontSize: 15, fontWeight: "bold", color: "#7C7C7C" }}>
+            APPROVED
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
           style={{
             width: "33.4%",
-            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "row",
+            gap: 10,
           }}
         >
-          <Text>aadi</Text>
-        </View>
+          <FontAwesome name={"times-circle-o"} size={23} color={"#7C7C7C"} />
+
+          <Text style={{ fontSize: 15, fontWeight: "bold", color: "#7C7C7C" }}>
+            REJECTED
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

@@ -17,7 +17,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
 import Notification from "./src/screens/dashboard/Notification";
 import Settings from "./src/screens/dashboard/Settings";
-// import ProfileDetails from "./src/screens/dashboard/ProfileDetails";
+import AllOfferLetters from "./src/screens/Users/AllOfferLetters";
+import CreateOfferLetter from "./src/screens/Users/CreateOfferLetter";
+import AddEmployee from "./src/screens/Users/AddEmployee";
+import AddEmployeeAddressInfo from "./src/screens/Users/AddEmployeeAddressInfo";
+import AddEmployeeBankInfo from "./src/screens/Users/AddEmployeeBankInfo";
+import UploadOfferLetter from "./src/screens/Users/UploadOfferLetter";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +30,7 @@ const Tab = createBottomTabNavigator();
 const BottomTab = () => {
   return (
     <Tab.Navigator
-      initialRouteName="DASHBOARD"
+      // initialRouteName="AllOfferLetters"
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
@@ -96,6 +101,18 @@ const App = () => {
         <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
         <Stack.Screen name="Notification" component={Notification} />
         <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="AllOfferLetters" component={AllOfferLetters} />
+        <Stack.Screen name="CreateOfferLetter" component={CreateOfferLetter} />
+        <Stack.Screen name="AddEmployee" component={AddEmployee} />
+        <Stack.Screen
+          name="AddEmployeeAddressInfo"
+          component={AddEmployeeAddressInfo}
+        />
+        <Stack.Screen
+          name="AddEmployeeBankInfo"
+          component={AddEmployeeBankInfo}
+        />
+        <Stack.Screen name="UploadOfferLetter" component={UploadOfferLetter} />
       </Stack.Navigator>
     </NavigationContainer>
   );

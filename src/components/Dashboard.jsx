@@ -43,6 +43,7 @@ const Dashboard = () => {
             alignItems: "center",
             rowGap: 20,
             padding: 20,
+            borderColor: "#7C7C7C",
           }}
         >
           <View
@@ -72,6 +73,7 @@ const Dashboard = () => {
             width: "100%",
             borderWidth: 1,
             borderRadius: 20,
+            borderColor: "#7C7C7C",
             alignItems: "center",
           }}
         >

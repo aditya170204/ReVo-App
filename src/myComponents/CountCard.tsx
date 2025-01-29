@@ -11,6 +11,7 @@ const CountCard = ({ count = 0, title = "N/A" }: TCountCard) => {
       style={{
         borderWidth: 1,
         borderRadius: 10,
+        borderColor: "#7C7C7C",
         height: 85,
         justifyContent: "center",
         alignItems: "center",
