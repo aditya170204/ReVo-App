@@ -11,6 +11,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
+import Dashboard from "./Dashboard";
 
 const Users = () => {
   const navigation = useNavigation();
@@ -61,7 +62,7 @@ const Users = () => {
           placeholder="Search"
           style={{
             width: "80%",
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderRadius: 40,
             borderColor: "#7C7C7C",
             paddingHorizontal: 15,
@@ -83,39 +84,69 @@ const Users = () => {
         </TouchableOpacity>
       </View>
       <View style={{ marginTop: 20 }}>
-        <SelectList setSelected={setSelected} data={data} />
+        <SelectList
+          boxStyles={{ borderWidth: 0.5 }}
+          // dropdownShown={true}
+          // arrowicon={true}
+          // closeicon={true}
+          // defaultOption={"pending"}
+          // ref={}
+          dropdownStyles={{
+            borderWidth: 0.5,
+          }}
+          setSelected={setSelected}
+          data={data}
+        />
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 50 }}
+        style={{ marginBottom: 170 }}
       >
         <EmployeeCard
-          name={"Aditya gjjh"}
-          email={"aditya@gmail"}
+          name={
+            "adityaRajadity aRajadityaRa jadit yaRaj  adaRa jadit kkkkkkkkkkkkkkkkk kkkkkk k k k k k k kk k k  k k k k k  k k k k sk k kks skks ks ksks  yaRajdityaRajadityaRajadityaRaj adityaRajadityaRajadityaRajad  itya Raj adityaRajadityaRaj"
+          }
+          email={"aditya@gmail000000000000000000"}
+          id={"adi17/2009999 999999 999994"}
+          mobileNo={"929799999999999999999"}
+        />
+        <EmployeeCard
+          name={"Aditya0000000000000000"}
+          email={
+            "aditya@gmail0 00000000 00000 pppppppp pppppp pppppppppppppp pppppp0000"
+          }
           id={"adi17/2004"}
           mobileNo={"929799...."}
         />
         <EmployeeCard
-          name={"Aditya"}
-          email={"aditya@gmail"}
-          id={"adi17/2004"}
+          name={"Aditya00000000000000000000000"}
+          email={"aditya@gmail0000000ooo00000000000"}
+          id={
+            "adi17/2004......... gggg yuhjjjfrytugyh frytgu yrft fty ft  ftgut fgubh gyuhb"
+          }
           mobileNo={"929799...."}
         />
         <EmployeeCard
-          name={"Aditya"}
-          email={"aditya@gmail"}
+          name={"Aditya00000000000000000000000"}
+          email={"aditya@gmail000000000000000000"}
           id={"adi17/2004"}
+          mobileNo={"929799...t ugybh ygibhj yihnj gyihbnj gyibh."}
+        />
+        <EmployeeCard
+          name={"Aditya00000000000000000000000"}
+          email={"aditya@gmail000000000000000000"}
+          id={"adi17/20ooooooooooooooooooooo04"}
           mobileNo={"929799...."}
         />
         <EmployeeCard
-          name={"Aditya"}
-          email={"aditya@gmail"}
+          name={"Aditya00000000000000000000000"}
+          email={"aditya@gmail 00 0000000000000"}
           id={"adi17/2004"}
-          mobileNo={"929799...."}
+          mobileNo={"929ooooooooooooooooooo799...."}
         />
         <EmployeeCard
-          name={"Aditya"}
-          email={"aditya@gmail"}
+          name={"Aditya00000000000000000000000"}
+          email={"aditya@gmail000000000000000000"}
           id={"adi17/2004"}
           mobileNo={"929799...."}
         />
