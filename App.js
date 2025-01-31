@@ -23,6 +23,11 @@ import AddEmployee from "./src/screens/Users/AddEmployee";
 import AddEmployeeAddressInfo from "./src/screens/Users/AddEmployeeAddressInfo";
 import AddEmployeeBankInfo from "./src/screens/Users/AddEmployeeBankInfo";
 import UploadOfferLetter from "./src/screens/Users/UploadOfferLetter";
+import EmployeeDetails from "./src/screens/Users/EmployeeDetails";
+import EmployeeDetailCard from "./src/myComponents/EmployeeDetailCard";
+import TeamDetails from "./src/screens/Teams/TeamDetails";
+import CreateTeam from "./src/screens/Teams/CreateTeam";
+import UpdateTeam from "./src/screens/Teams/UpdateTeam";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -113,6 +118,14 @@ const App = () => {
           component={AddEmployeeBankInfo}
         />
         <Stack.Screen name="UploadOfferLetter" component={UploadOfferLetter} />
+        <Stack.Screen name="EmployeeDetails" component={EmployeeDetails} />
+        <Stack.Screen
+          name="EmployeeDetailCard"
+          component={EmployeeDetailCard}
+        />
+        <Stack.Screen name="TeamDetails" component={TeamDetails} />
+        <Stack.Screen name="CreateTeam" component={CreateTeam} />
+        <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
       </Stack.Navigator>
     </NavigationContainer>
   );

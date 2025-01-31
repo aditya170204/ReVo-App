@@ -23,8 +23,9 @@ const NotiCard = () => {
   return (
     <View
       style={{
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 5,
+        borderColor: "#7C7C7C",
         marginTop: 25,
         flexDirection: "row",
         padding: 10,
@@ -33,7 +34,9 @@ const NotiCard = () => {
       <View style={{ width: "10%" }}>
         <View
           style={{
-            borderWidth: 1,
+            borderWidth: 0.5,
+            borderColor: "#7C7C7C",
+
             height: 15,
             width: 15,
             margin: 10,

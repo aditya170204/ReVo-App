@@ -38,7 +38,7 @@ const Dashboard = () => {
         <View
           style={{
             width: "100%",
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderRadius: 20,
             alignItems: "center",
             rowGap: 20,
@@ -71,7 +71,7 @@ const Dashboard = () => {
         <View
           style={{
             width: "100%",
-            borderWidth: 1,
+            borderWidth: 0.5,
             borderRadius: 20,
             borderColor: "#7C7C7C",
             alignItems: "center",

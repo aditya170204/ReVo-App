@@ -7,7 +7,7 @@ const CountCard2 = ({ arrData }) => {
     <View
       style={{
         width: "100%",
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 20,
         borderColor: "#7C7C7C",
         alignItems: "center",

@@ -8,7 +8,8 @@ const ProfileDetailSection = ({ sectionTitle }) => {
         style={{
           margin: 10,
           marginTop: 20,
-          fontWeight: "bold",
+          // padding: 8,
+          fontWeight: "600",
           fontSize: 18,
         }}
       >
@@ -16,9 +17,9 @@ const ProfileDetailSection = ({ sectionTitle }) => {
       </Text>
       <View
         style={{
-          borderWidth: 1,
-          borderColor: "#D0837F",
-          width: "94%",
+          borderWidth: 0.5,
+          borderColor: "#AD6F6C",
+          width: "97%",
           marginLeft: 10,
           marginBottom: 15,
         }}

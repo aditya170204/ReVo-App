@@ -8,7 +8,7 @@ const DetailsForm = ({ title, detail }) => {
       <TextInput
         placeholder={"Enter " + title}
         style={{
-          borderWidth: 1,
+          borderWidth: 0.5,
           borderRadius: 10,
           borderColor: "#7C7C7C",
           marginVertical: 9,

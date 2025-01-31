@@ -14,7 +14,7 @@ const GraphCard = ({
       style={{
         width: "100%",
         height: 300,
-        borderWidth: border ? 1 : 0,
+        borderWidth: border ? 0.5 : 0,
         borderRadius: 20,
         alignItems: "center",
         borderColor: "#7C7C7C",
@@ -22,16 +22,18 @@ const GraphCard = ({
     >
       <Text
         style={{
-          marginTop: 10,
+          paddingVertical: 5,
           fontSize: 25,
           color: "#2B2B2B",
           fontWeight: "bold",
           marginBottom: 10,
+          borderBottomWidth: 1,
+          borderColor: "#7C7C7C",
         }}
       >
         {sectionTitle}
       </Text>
-      <View style={{ width: "60%", borderWidth: 1, borderColor: "#5D5D5D" }} />
+
       <View
         style={{
           marginTop: 20,

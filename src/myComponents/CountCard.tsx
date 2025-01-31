@@ -9,7 +9,7 @@ const CountCard = ({ count = 0, title = "N/A" }: TCountCard) => {
   return (
     <View
       style={{
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 10,
         borderColor: "#7C7C7C",
         height: 85,
