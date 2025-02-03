@@ -1,4 +1,5 @@
 import {
+  Alert,
   ScrollView,
   StyleSheet,
   Text,
@@ -7,14 +8,16 @@ import {
   View,
 } from "react-native";
 import React, { useState } from "react";
-// import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { SelectList } from "react-native-dropdown-select-list";
-// import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
 import Svg, { Path } from "react-native-svg";
-import AttendanceCard from "../myComponents/AttendanceCard";
+import AttendanceCard from "../../myComponents/AttendanceCard";
+import SwipeButton from "rn-swipe-button";
+import SwipeJavBtn from "../../myComponents/SwipeJavBtn";
 
-const Attendance = () => {
+const MyAttendance = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState("");
   const data = [
@@ -47,32 +50,82 @@ const Attendance = () => {
       />
     </Svg>
   );
+
+  //switching
+
+  const [swipeDirection, setSwipeDirection] = useState("");
+  const [titleName, setTitleName] = useState("");
+
+  const handleSwipeSuccess = () => {
+    Alert.alert("Punched-Insfully");
+    setTitleName("Keshav");
+  };
+
+  const handleSwipeLeft = () => {
+    Alert.alert("Swipe Left");
+    setTitleName("Keshav");
+  };
   return (
     <View style={{ padding: 20, marginTop: 20 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text style={{ fontSize: 25, fontWeight: "bold", padding: 12 }}>
-          Attendance
-        </Text>
+      <View style={{ flexDirection: "row", gap: 5, marginBottom: 25 }}>
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("MyAttendance");
-          }}
           style={{
-            backgroundColor: "#9A4D49",
-            justifyContent: "center",
-            alignItems: "center",
-            // width: 110,
-            // height: 50,
-            padding: 10,
-            borderRadius: 12,
-            marginTop: 10,
+            // backgroundColor: "yellow",
+            width: "10%",
+            padding: 5,
+
+            marginTop: 18,
           }}
+          onPress={() => navigation.goBack()}
         >
-          <Text style={{ color: "white", fontWeight: "600" }}>
+          <FontAwesome name={"chevron-left"} size={30} />
+        </TouchableOpacity>
+        <View style={{ flexDirection: "row" }}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontWeight: "bold",
+              marginTop: 19,
+
+              //   backgroundColor: "red",
+            }}
+          >
             My Attendance
           </Text>
-        </TouchableOpacity>
+        </View>
       </View>
+      {/* <SwipeButton
+        title={titleName}
+        titleColor="white"
+        titleStyles={{ fontWeight: "600" }}
+        titleFontSize={15}
+        railBackgroundColor="#D0837F"
+        railBorderColor="white"
+        railStyles={{
+          backgroundColor: "#A6AEBF",
+          borderColor: "#A6AEBF",
+          height: 50,
+        }}
+        thumbIconBackgroundColor="#FFFFFF"
+        thumbIconBorderColor="white"
+        containerStyles={{ height: 50 }}
+        swipeSuccessThreshold={50}
+        onSwipeSuccess={(v) => console.log("swipeToRight", v)}
+        onSwipeLeft={(v) => console.log("swipeToLeft", v)}
+        onSwipeStart={(v) => {
+          console.log("v", v);
+        }}
+      /> */}
+      <SwipeJavBtn
+        adjustWidth={150}
+        slideWidth={370}
+        onSwipe={(v) => {
+          console.log("sdbgfjash", v);
+        }}
+      />
+      {/* {swipeDirection ? (
+        <Text style={{ marginTop: 20, fontSize: 16 }}>{swipeDirection}</Text>
+      ) : null} */}
       <View
         style={{
           flexDirection: "row",
@@ -123,11 +176,6 @@ const Attendance = () => {
       <View style={{ marginTop: 20 }}>
         <SelectList
           boxStyles={{ borderWidth: 0.5 }}
-          // dropdownShown={true}
-          // arrowicon={true}
-          // closeicon={true}
-          // defaultOption={"pending"}
-          // ref={}
           dropdownStyles={{
             borderWidth: 0.5,
           }}
@@ -137,7 +185,7 @@ const Attendance = () => {
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 170 }}
+        style={{ marginBottom: 190 }}
       >
         <AttendanceCard
           EmployeeName={"Aditya Raj"}
@@ -190,6 +238,6 @@ const Attendance = () => {
   );
 };
 
-export default Attendance;
+export default MyAttendance;
 
 const styles = StyleSheet.create({});

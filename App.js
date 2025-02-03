@@ -28,6 +28,8 @@ import EmployeeDetailCard from "./src/myComponents/EmployeeDetailCard";
 import TeamDetails from "./src/screens/Teams/TeamDetails";
 import CreateTeam from "./src/screens/Teams/CreateTeam";
 import UpdateTeam from "./src/screens/Teams/UpdateTeam";
+import MyAttendance from "./src/screens/Attendance/MyAttendance";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -96,38 +98,47 @@ const BottomTab = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="BottomTab" component={BottomTab} />
-        <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
-        <Stack.Screen name="Notification" component={Notification} />
-        <Stack.Screen name="Settings" component={Settings} />
-        <Stack.Screen name="AllOfferLetters" component={AllOfferLetters} />
-        <Stack.Screen name="CreateOfferLetter" component={CreateOfferLetter} />
-        <Stack.Screen name="AddEmployee" component={AddEmployee} />
-        <Stack.Screen
-          name="AddEmployeeAddressInfo"
-          component={AddEmployeeAddressInfo}
-        />
-        <Stack.Screen
-          name="AddEmployeeBankInfo"
-          component={AddEmployeeBankInfo}
-        />
-        <Stack.Screen name="UploadOfferLetter" component={UploadOfferLetter} />
-        <Stack.Screen name="EmployeeDetails" component={EmployeeDetails} />
-        <Stack.Screen
-          name="EmployeeDetailCard"
-          component={EmployeeDetailCard}
-        />
-        <Stack.Screen name="TeamDetails" component={TeamDetails} />
-        <Stack.Screen name="CreateTeam" component={CreateTeam} />
-        <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <GestureHandlerRootView>
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="BottomTab" component={BottomTab} />
+          <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
+          <Stack.Screen name="Notification" component={Notification} />
+          <Stack.Screen name="Settings" component={Settings} />
+          <Stack.Screen name="AllOfferLetters" component={AllOfferLetters} />
+          <Stack.Screen
+            name="CreateOfferLetter"
+            component={CreateOfferLetter}
+          />
+          <Stack.Screen name="AddEmployee" component={AddEmployee} />
+          <Stack.Screen
+            name="AddEmployeeAddressInfo"
+            component={AddEmployeeAddressInfo}
+          />
+          <Stack.Screen
+            name="AddEmployeeBankInfo"
+            component={AddEmployeeBankInfo}
+          />
+          <Stack.Screen
+            name="UploadOfferLetter"
+            component={UploadOfferLetter}
+          />
+          <Stack.Screen name="EmployeeDetails" component={EmployeeDetails} />
+          <Stack.Screen
+            name="EmployeeDetailCard"
+            component={EmployeeDetailCard}
+          />
+          <Stack.Screen name="TeamDetails" component={TeamDetails} />
+          <Stack.Screen name="CreateTeam" component={CreateTeam} />
+          <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
+          <Stack.Screen name="MyAttendance" component={MyAttendance} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </GestureHandlerRootView>
   );
 };
 
