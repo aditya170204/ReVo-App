@@ -10,17 +10,18 @@ import React, { useState } from "react";
 import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from "@react-navigation/native";
 import Svg, { Path } from "react-native-svg";
-import AttendanceCard from "../myComponents/AttendanceCard";
+import LeaveCard from "../../myComponents/LeaveCard";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
-const Attendance = () => {
+const MyLeaves = () => {
   const navigation = useNavigation();
   const [selected, setSelected] = useState("");
   const data = [
-    { key: "Issues Raised", value: "Issues Raised" },
-    { key: "Present", value: "Present" },
-    { key: "Absent", value: "Absent" },
-    { key: "On Leave", value: "On Leave" },
-    { key: "Half Day", value: "Half Day" },
+    { key: "New", value: "New" },
+    { key: "On Hold", value: "On Hold" },
+    { key: "Revised", value: "Revised" },
+    { key: "Approved", value: "Approved" },
+    { key: "Rejected", value: "Rejected" },
   ];
   const SVGComponent = (props) => (
     <Svg
@@ -47,14 +48,14 @@ const Attendance = () => {
   );
   return (
     <View style={{ padding: 20, marginTop: 20 }}>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+      {/* <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontSize: 25, fontWeight: "bold", padding: 12 }}>
-          Attendance
+          My Leaves
         </Text>
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("MyAttendance");
-          }}
+          //   onPress={() => {
+          //     navigation.navigate("MyLeaves");
+          //   }}
           style={{
             backgroundColor: "#9A4D49",
             justifyContent: "center",
@@ -67,9 +68,55 @@ const Attendance = () => {
           }}
         >
           <Text style={{ color: "white", fontWeight: "600" }}>
-            My Attendance
+            Apply For Leave
           </Text>
         </TouchableOpacity>
+      </View> */}
+      <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity
+          style={{
+            // backgroundColor: "yellow",
+            width: "10%",
+            padding: 3,
+
+            marginTop: 18,
+            padding: 5,
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          <FontAwesome name={"chevron-left"} size={30} />
+        </TouchableOpacity>
+        <View style={{ flexDirection: "row", gap: 105 }}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontWeight: "bold",
+              marginTop: 19,
+              //   textAlign: "left",
+              //   backgroundColor: "red",
+            }}
+          >
+            My Leaves
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("ApplyForLeave");
+            }}
+            style={{
+              backgroundColor: "#9A4D49",
+              justifyContent: "center",
+              alignItems: "center",
+
+              borderRadius: 12,
+              marginTop: 10,
+              padding: 10,
+            }}
+          >
+            <Text style={{ color: "white", fontWeight: "600" }}>
+              Apply For Leave
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
       <View
         style={{
@@ -102,8 +149,8 @@ const Attendance = () => {
         >
           {/* <MaterialIcons color={"white"} name={"person-add"} size={25} /> */}
           <Svg
-            width={18}
-            height={18}
+            width={20}
+            height={20}
             viewBox="0 0 18 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -137,57 +184,100 @@ const Attendance = () => {
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
       >
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..876 776 98 865 987 69 876 5678 ;)"}
+          startDate={"gubh ugvbh "}
+          endDate={"aditya@gmail.com"}
+          leaveFor={"React-Native Intern"}
+          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
         />
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={
-            "React-Native Intern  tygih iygbh yhuj ouj gybhuj nygi hhu j iojklmfy tgubyhinjl"
+          startDate={"gubh ugvbh "}
+          endDate={"aditya@gmail.com"}
+          leaveFor={"React-Native Intern"}
+          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
+        />
+        <LeaveCard
+          EmployeeName={"Aditya Raj"}
+          startDate={"gubh io ij oijr jiroig ijrijorj ugvbh "}
+          endDate={"aditya@gmail.com"}
+          leaveFor={"React-Native Intern"}
+          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
+        />
+        <LeaveCard
+          EmployeeName={"Aditya Raj"}
+          startDate={"gubh ugvbh "}
+          endDate={"aditya joig oijr jigr jirem jierpm@gmail.com"}
+          leaveFor={"React-Native Intern"}
+          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
+        />
+        <LeaveCard
+          EmployeeName={"Aditya Raj"}
+          startDate={"gubh ugvbh "}
+          endDate={"aditya@gmail.com"}
+          leaveFor={"React-Native Intern"}
+          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
+        />
+        <LeaveCard
+          EmployeeName={"Aditya Raj"}
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
           }
-          mobileNo={"979298..;)"}
         />
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={
-            "aditya@gmail.com gyibh ujnol ojikml rfutbgihnjm poikljf tugibhnjp ikljnk"
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
           }
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
         />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj g iyhujnmoi jmk ibhnjoji kmljiok m"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
+          }
         />
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
+          }
         />
-        <AttendanceCard
+        <LeaveCard
           EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
+          }
+        />
+        <LeaveCard
+          EmployeeName={"Aditya Raj"}
+          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
+          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
+          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
+          reasonForLeave={
+            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
+          }
         />
       </ScrollView>
     </View>
   );
 };
 
-export default Attendance;
+export default MyLeaves;
 
 const styles = StyleSheet.create({});

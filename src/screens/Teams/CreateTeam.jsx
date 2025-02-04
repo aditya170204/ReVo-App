@@ -8,7 +8,6 @@ import {
 import React, { useState } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
-import ProfileDetailSection from "../../myComponents/ProfileDetailSection";
 import DetailsForm from "../../myComponents/DetailsForm";
 import { SelectList } from "react-native-dropdown-select-list";
 
@@ -62,7 +61,7 @@ const CreateTeam = () => {
         <View style={{ flexDirection: "row" }}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 25,
               fontWeight: "bold",
               marginTop: 19,
 

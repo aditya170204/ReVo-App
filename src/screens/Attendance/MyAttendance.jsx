@@ -144,9 +144,9 @@ const MyAttendance = () => {
           }}
         />
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("AddEmployee");
-          }}
+          // onPress={() => {
+          //   navigation.navigate("AddEmployee");
+          // }}
           style={{
             backgroundColor: "#D0837F",
             justifyContent: "center",
@@ -157,8 +157,8 @@ const MyAttendance = () => {
         >
           {/* <MaterialIcons color={"white"} name={"person-add"} size={25} /> */}
           <Svg
-            width={18}
-            height={18}
+            width={20}
+            height={20}
             viewBox="0 0 18 18"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +185,7 @@ const MyAttendance = () => {
       </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 190 }}
+        style={{ marginBottom: 260 }}
       >
         <AttendanceCard
           EmployeeName={"Aditya Raj"}

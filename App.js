@@ -30,6 +30,9 @@ import CreateTeam from "./src/screens/Teams/CreateTeam";
 import UpdateTeam from "./src/screens/Teams/UpdateTeam";
 import MyAttendance from "./src/screens/Attendance/MyAttendance";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import MyLeaves from "./src/screens/Leaves/MyLeaves";
+import ApplyForLeave from "./src/screens/Leaves/ApplyForLeave";
+import LeaveDetails from "./src/screens/Leaves/LeaveDetails";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -136,6 +139,9 @@ const App = () => {
           <Stack.Screen name="CreateTeam" component={CreateTeam} />
           <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
           <Stack.Screen name="MyAttendance" component={MyAttendance} />
+          <Stack.Screen name="LeaveDetails" component={LeaveDetails} />
+          <Stack.Screen name="MyLeaves" component={MyLeaves} />
+          <Stack.Screen name="ApplyForLeave" component={ApplyForLeave} />
         </Stack.Navigator>
       </NavigationContainer>
     </GestureHandlerRootView>

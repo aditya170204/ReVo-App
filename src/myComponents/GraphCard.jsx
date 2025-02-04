@@ -12,8 +12,8 @@ const GraphCard = ({
   return (
     <View
       style={{
-        width: "100%",
-        height: 300,
+        // width: "100%",
+        height: 250,
         borderWidth: border ? 0.5 : 0,
         borderRadius: 20,
         alignItems: "center",
@@ -39,7 +39,7 @@ const GraphCard = ({
           marginTop: 20,
           flexDirection: "row",
           width: "80%",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
           alignItems: "center",
         }}
       >
@@ -47,10 +47,10 @@ const GraphCard = ({
           style={{
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 10000,
+            borderRadius: 100,
             backgroundColor: "blue",
-            height: graphSize == "normal" ? "94%" : "102%",
-            width: graphSize == "normal" ? "44%" : "50%",
+            height: graphSize == "normal" ? 125 : 145,
+            width: graphSize == "normal" ? 125 : 145,
           }}
         >
           <Text style={{ color: "white" }}>{graphName}</Text>

@@ -30,9 +30,7 @@ const ProfileArea = () => {
         </TouchableOpacity>
         <View style={{ width: "65%" }}>
           <Text style={{ fontWeight: "semibold", fontSize: 20 }}>Hi</Text>
-          <Text style={{ fontWeight: "semibold", fontSize: 20 }}>
-            JESHU YADAV
-          </Text>
+          <Text style={{ fontWeight: "600", fontSize: 20 }}>JESHU YADAV</Text>
           <Text style={{ fontWeight: "semibold", fontSize: 10 }}>
             SuperAdmin
           </Text>
@@ -43,21 +41,23 @@ const ProfileArea = () => {
               navigation.navigate("Notification");
             }}
           >
-            <MaterialCommunityIcons name={"bell"} size={25} />
+            <MaterialCommunityIcons name={"bell"} color={"#898989"} size={25} />
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("Settings");
             }}
           >
-            <AntDesign name={"setting"} size={25} />
+            <AntDesign name={"setting"} color={"#898989"} size={25} />
           </TouchableOpacity>
         </View>
       </View>
-      <View>
-        <Text>DASHBOARD</Text>
+      <View style={{ marginLeft: -260, marginTop: 10 }}>
+        <Text style={{ fontSize: 20, fontWeight: "bold" }}>DASHBOARD</Text>
       </View>
-      <View style={{ borderWidth: 1, borderColor: "#D0837F", width: "90%" }} />
+      <View
+        style={{ borderWidth: 0.6, borderColor: "#D0837F", width: "98%" }}
+      />
     </View>
   );
 };

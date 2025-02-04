@@ -4,8 +4,10 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 // import SvgComponent from "./SvgComponent";
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
+import { useNavigation } from "@react-navigation/native";
 
 const OfferLetterCard = ({ name, dateOfCreation, createdBy, status }) => {
+  const navigation = useNavigation();
   const SVGComponent = (props) => (
     <Svg
       width={11}
@@ -33,7 +35,7 @@ const OfferLetterCard = ({ name, dateOfCreation, createdBy, status }) => {
   return (
     <View
       style={{
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRadius: 10,
         borderColor: "#7C7C7C",
         marginTop: 20,
@@ -46,7 +48,10 @@ const OfferLetterCard = ({ name, dateOfCreation, createdBy, status }) => {
           // backgroundColor: "yellow",
         }}
       >
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("EmployeeDetails");
+          }}
           //   key={"a"}
           style={{
             width: 40,
@@ -59,8 +64,11 @@ const OfferLetterCard = ({ name, dateOfCreation, createdBy, status }) => {
           }}
         >
           <Text style={{ fontWeight: "bold", color: "white" }}>E</Text>
-        </View>
-        <View
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("EmployeeDetails");
+          }}
           style={{
             flexDirection: "row",
             //   backgroundColor: "pink",
@@ -108,11 +116,11 @@ const OfferLetterCard = ({ name, dateOfCreation, createdBy, status }) => {
               <Text>{status}</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         style={{
-          borderTopWidth: 1,
+          borderTopWidth: 0.5,
           borderColor: "#7C7C7C",
           alignItems: "center",
           justifyContent: "center",

@@ -56,7 +56,10 @@ const EmployeeCard = ({ name, id, email, mobileNo }) => {
             <Text style={{ fontWeight: "bold", color: "white" }}>E</Text>
           </TouchableOpacity>
         </View>
-        <View
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("EmployeeDetails");
+          }}
           key={"b"}
           style={{
             // backgroundColor: "green",
@@ -107,7 +110,7 @@ const EmployeeCard = ({ name, id, email, mobileNo }) => {
               <Text style={{ fontSize: 15 }}>{mobileNo}</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <View
         style={{

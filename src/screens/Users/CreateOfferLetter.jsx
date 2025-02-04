@@ -42,7 +42,7 @@ const CreateOfferLetter = () => {
         <View style={{ flexDirection: "row" }}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 24,
               fontWeight: "bold",
               marginTop: 19,
 

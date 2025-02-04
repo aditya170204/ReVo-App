@@ -3,27 +3,33 @@ import React from "react";
 
 const ProfileDetailSection = ({ sectionTitle }) => {
   return (
-    <View>
+    <View
+      style={{
+        borderBottomWidth: 0.6,
+        borderColor: "#AD6F6C",
+        marginBottom: 15,
+      }}
+    >
       <Text
         style={{
-          margin: 10,
           marginTop: 20,
-          // padding: 8,
+          marginBottom: 5,
+          // padding: 5,
           fontWeight: "600",
           fontSize: 18,
         }}
       >
         {sectionTitle}
       </Text>
-      <View
+      {/* <View
         style={{
-          borderWidth: 0.5,
+          borderWidth: 0.6,
           borderColor: "#AD6F6C",
           width: "97%",
-          marginLeft: 10,
+          // marginLeft: ,
           marginBottom: 15,
         }}
-      />
+      /> */}
     </View>
   );
 };

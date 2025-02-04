@@ -28,10 +28,10 @@ const AllOfferLetters = () => {
         >
           <FontAwesome name={"chevron-left"} size={30} />
         </TouchableOpacity>
-        <View style={{ flexDirection: "row", gap: 35 }}>
+        <View style={{ flexDirection: "row", gap: 20 }}>
           <Text
             style={{
-              fontSize: 20,
+              fontSize: 24,
               fontWeight: "bold",
               marginTop: 19,
               textAlign: "left",
@@ -64,14 +64,17 @@ const AllOfferLetters = () => {
         placeholder="Search"
         style={{
           width: "98%",
-          borderWidth: 1,
+          borderWidth: 0.5,
           borderColor: "#7C7C7C",
           borderRadius: 20,
           marginTop: 20,
           paddingHorizontal: 15,
         }}
       />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ marginBottom: 110 }}
+      >
         <OfferLetterCard
           name={"Aditya "}
           createdBy={"Jeshu Yadav"}
