@@ -10,9 +10,18 @@ import React from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import OfferLetterCard from "../../myComponents/OfferLetterCard";
+import { UserListing } from "../../api/fetchApi";
+import { useQuery } from "react-query";
 
 const AllOfferLetters = () => {
   const navigation = useNavigation();
+  const { data: UserListing } = useQuery({
+    queryFn: () => {
+      return UserListing;
+    },
+    queryKey: ["UserListing"],
+  });
+  console.log("UserListing", UserListing);
   return (
     <View style={{ padding: 20, marginTop: 25 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-evenly" }}>

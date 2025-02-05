@@ -33,6 +33,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import MyLeaves from "./src/screens/Leaves/MyLeaves";
 import ApplyForLeave from "./src/screens/Leaves/ApplyForLeave";
 import LeaveDetails from "./src/screens/Leaves/LeaveDetails";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,51 +100,55 @@ const BottomTab = () => {
   );
 };
 
+const queryClient = new QueryClient();
+
 const App = () => {
   return (
     <GestureHandlerRootView>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen name="BottomTab" component={BottomTab} />
-          <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
-          <Stack.Screen name="Notification" component={Notification} />
-          <Stack.Screen name="Settings" component={Settings} />
-          <Stack.Screen name="AllOfferLetters" component={AllOfferLetters} />
-          <Stack.Screen
-            name="CreateOfferLetter"
-            component={CreateOfferLetter}
-          />
-          <Stack.Screen name="AddEmployee" component={AddEmployee} />
-          <Stack.Screen
-            name="AddEmployeeAddressInfo"
-            component={AddEmployeeAddressInfo}
-          />
-          <Stack.Screen
-            name="AddEmployeeBankInfo"
-            component={AddEmployeeBankInfo}
-          />
-          <Stack.Screen
-            name="UploadOfferLetter"
-            component={UploadOfferLetter}
-          />
-          <Stack.Screen name="EmployeeDetails" component={EmployeeDetails} />
-          <Stack.Screen
-            name="EmployeeDetailCard"
-            component={EmployeeDetailCard}
-          />
-          <Stack.Screen name="TeamDetails" component={TeamDetails} />
-          <Stack.Screen name="CreateTeam" component={CreateTeam} />
-          <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
-          <Stack.Screen name="MyAttendance" component={MyAttendance} />
-          <Stack.Screen name="LeaveDetails" component={LeaveDetails} />
-          <Stack.Screen name="MyLeaves" component={MyLeaves} />
-          <Stack.Screen name="ApplyForLeave" component={ApplyForLeave} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen name="BottomTab" component={BottomTab} />
+            <Stack.Screen name="ProfileDetails" component={ProfileDetails} />
+            <Stack.Screen name="Notification" component={Notification} />
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="AllOfferLetters" component={AllOfferLetters} />
+            <Stack.Screen
+              name="CreateOfferLetter"
+              component={CreateOfferLetter}
+            />
+            <Stack.Screen name="AddEmployee" component={AddEmployee} />
+            <Stack.Screen
+              name="AddEmployeeAddressInfo"
+              component={AddEmployeeAddressInfo}
+            />
+            <Stack.Screen
+              name="AddEmployeeBankInfo"
+              component={AddEmployeeBankInfo}
+            />
+            <Stack.Screen
+              name="UploadOfferLetter"
+              component={UploadOfferLetter}
+            />
+            <Stack.Screen name="EmployeeDetails" component={EmployeeDetails} />
+            <Stack.Screen
+              name="EmployeeDetailCard"
+              component={EmployeeDetailCard}
+            />
+            <Stack.Screen name="TeamDetails" component={TeamDetails} />
+            <Stack.Screen name="CreateTeam" component={CreateTeam} />
+            <Stack.Screen name="UpdateTeam" component={UpdateTeam} />
+            <Stack.Screen name="MyAttendance" component={MyAttendance} />
+            <Stack.Screen name="LeaveDetails" component={LeaveDetails} />
+            <Stack.Screen name="MyLeaves" component={MyLeaves} />
+            <Stack.Screen name="ApplyForLeave" component={ApplyForLeave} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </QueryClientProvider>
     </GestureHandlerRootView>
   );
 };

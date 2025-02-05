@@ -12,6 +12,8 @@ import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
 import Dashboard from "./Dashboard";
+import { getUserList } from "../api/fetchApi";
+import { useQuery } from "react-query";
 
 const Users = () => {
   const navigation = useNavigation();
@@ -24,6 +26,18 @@ const Users = () => {
     { key: "Rejected", value: "Rejected" },
     { key: "Deactivate", value: "Deactivate" },
   ];
+
+  const {
+    data: userList,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return getUserList();
+    },
+    queryKey: ["getUserList"],
+  });
+  // console.log("userList", userList);
   return (
     // <ScrollView>
     <View style={{ padding: 20, marginTop: 20 }}>

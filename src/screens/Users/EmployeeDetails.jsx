@@ -10,8 +10,22 @@ import { useNavigation } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import ProfileDetailSection from "../../myComponents/ProfileDetailSection";
 import EmployeeDetailCard from "../../myComponents/EmployeeDetailCard";
+import { PostUserName } from "../../api/PostApi";
+import { useQuery } from "react-query";
 const EmployeeDetails = () => {
   const navigation = useNavigation();
+  // "6762be500e895b4806b12d6d"
+  const {
+    data: getUserDetailsById,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return PostUserName({ userId: "6762be500e895b4806b12d6d" });
+    },
+    queryKey: ["getUserDetailsById", "6762be500e895b4806b12d6d"],
+  });
+  console.log("getUserDetailsById", getUserDetailsById);
   return (
     <View style={{ padding: 20, marginTop: 25, marginBottom: 50 }}>
       <View style={{ flexDirection: "row", gap: 5 }}>
