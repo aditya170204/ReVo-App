@@ -23,7 +23,7 @@ const EmployeeDetailCard = ({ title, value }) => {
       </View>
       <Text style={{ width: "4%", fontSize: 15 }}>:</Text>
       <View style={{ width: "48%" }}>
-        <Text style={{ fontSize: 15 }}>{value}</Text>
+        <Text style={{ fontSize: 15 }}>{value ? value : "N/A"}</Text>
       </View>
     </View>
   );

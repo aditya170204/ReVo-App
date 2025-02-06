@@ -6,7 +6,7 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import ProfileDetailSection from "../../myComponents/ProfileDetailSection";
 import EmployeeDetailCard from "../../myComponents/EmployeeDetailCard";
@@ -14,6 +14,10 @@ import { PostUserName } from "../../api/PostApi";
 import { useQuery } from "react-query";
 const EmployeeDetails = () => {
   const navigation = useNavigation();
+  const { params } = useRoute();
+  console.log("paramsOOO", params?.id);
+  //
+
   // "6762be500e895b4806b12d6d"
   const {
     data: getUserDetailsById,
@@ -21,11 +25,15 @@ const EmployeeDetails = () => {
     isLoading,
   } = useQuery({
     queryFn: () => {
-      return PostUserName({ userId: "6762be500e895b4806b12d6d" });
+      return PostUserName({ _id: params?.id });
     },
-    queryKey: ["getUserDetailsById", "6762be500e895b4806b12d6d"],
+    queryKey: ["getUserDetailsById", params?.id],
+    enabled: !!params?.id,
   });
-  console.log("getUserDetailsById", getUserDetailsById);
+  console.log("getUserDetailsById", getUserDetailsById?.data.name);
+
+  //
+
   return (
     <View style={{ padding: 20, marginTop: 25, marginBottom: 50 }}>
       <View style={{ flexDirection: "row", gap: 5 }}>
@@ -57,62 +65,97 @@ const EmployeeDetails = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileDetailSection sectionTitle={"EMPLOYEE INFORMATION"} />
-        <EmployeeDetailCard title={"Employee Name"} value={"Aditya"} />
+        <EmployeeDetailCard
+          title={"Bio"}
+          value={getUserDetailsById?.data.bio}
+        />
+        <ProfileDetailSection sectionTitle={"EMPLOYEE INFORMATION"} />
         <EmployeeDetailCard
           title={"Employee Name"}
-          value={"Aditiedmkl rfed  edya"}
+          value={getUserDetailsById?.data.name}
         />
-        <EmployeeDetailCard title={"Employee Name"} value={"Aditya"} />
-        <EmployeeDetailCard title={"Employeeklmde Name"} value={"Aditya"} />
-        <EmployeeDetailCard title={"Employee Name"} value={"Aditya"} />
+        <EmployeeDetailCard
+          title={"Employee Email"}
+          value={getUserDetailsById?.data.email}
+        />
+        <EmployeeDetailCard
+          title={"Mobile Number"}
+          value={getUserDetailsById?.data.mobile}
+        />
+        <EmployeeDetailCard
+          title={"Role"}
+          value={getUserDetailsById?.data.role}
+        />
+        <EmployeeDetailCard
+          title={"Employee Code"}
+          value={getUserDetailsById?.data.empCode}
+        />
+        <EmployeeDetailCard
+          title={"Department"}
+          value={getUserDetailsById?.data.department}
+        />
+        <ProfileDetailSection sectionTitle={"ADDRESS INFORMATION"} />
+        <EmployeeDetailCard
+          title={"House/Flat Address"}
+          value={getUserDetailsById?.data.currentAddress.currentAdd}
+        />
+        <EmployeeDetailCard
+          title={"Address Line 2"}
+          value={getUserDetailsById?.data.currentAddress.currentAdd2}
+        />
+        <EmployeeDetailCard
+          title={"City"}
+          value={getUserDetailsById?.data.currentAddress.currentCity}
+        />
+        <EmployeeDetailCard
+          title={"State"}
+          value={getUserDetailsById?.data.currentAddress.currentState}
+        />
+        <EmployeeDetailCard
+          title={"Country"}
+          value={getUserDetailsById?.data.currentAddress.currentCountry}
+        />
+        <EmployeeDetailCard
+          title={"Post Code"}
+          value={getUserDetailsById?.data.currentAddress.currentPostCode}
+        />
         <ProfileDetailSection sectionTitle={"BANK INFORMATION"} />
-        <EmployeeDetailCard title={"Employee Name"} value={"Aditya"} />
         <EmployeeDetailCard
-          title={"Employee Name"}
-          value={"Adt ref grefitya"}
+          title={"Name Of Bank"}
+          value={getUserDetailsById?.data?.bankDetails?.bankName}
         />
-        <EmployeeDetailCard title={"Employee Name"} value={"Aditya"} />
+        <EmployeeDetailCard
+          title={"Name on Bank Ac."}
+          value={getUserDetailsById?.data?.nameOnBank}
+        />
+        <EmployeeDetailCard
+          title={"Account No."}
+          value={getUserDetailsById?.data.bankDetails?.accountNumber}
+        />
+        <EmployeeDetailCard
+          title={"Sort Code"}
+          value={getUserDetailsById?.data?.sortCode}
+        />
         <ProfileDetailSection sectionTitle={"SOCIAL MEDIA LINKS"} />
         <EmployeeDetailCard
-          title={"Emplo rf er  rg rrg yrjndmkmee Name"}
-          value={"Ad reg gfitya"}
-        />
-        <EmployeeDetailCard title={"Emplo ref rf yee Name"} value={"Aditya"} />
-        <EmployeeDetailCard
-          title={"Employrerfv refd ree Name"}
-          value={"Adi ref fertya"}
-        />
-        <ProfileDetailSection sectionTitle={"MESSAGING CHANNEL"} />
-        <EmployeeDetailCard
-          title={"Employ erf rfv fee Name"}
-          value={"Adire f refd rf d rftya"}
+          title={"Facebook"}
+          value={getUserDetailsById?.data?.facebook}
         />
         <EmployeeDetailCard
-          title={"Empljrenkdr efd d d rfdoyee Name"}
-          value={"Ad r fd  dfsitya"}
-        />
-        <ProfileDetailSection sectionTitle={"ATTACHMENTS"} />
-        <EmployeeDetailCard
-          title={"Employee  r d dd f dName"}
-          value={"Adi rff rtya"}
+          title={"Instagram"}
+          value={getUserDetailsById?.data?.instagram}
         />
         <EmployeeDetailCard
-          title={"Employee Nartevnicjdev hncdme"}
-          value={"Adi ref r efv rvfr tya"}
+          title={"YouTube"}
+          value={getUserDetailsById?.data?.youtube}
         />
         <EmployeeDetailCard
-          title={"Employtgerfdr rev re f refee Name"}
-          value={
-            "Adnfdmklnreojdfklscr dc rudo ruod uhfwosd ods uojdcj oidc jidc jd oisdxi jdc x kitya"
-          }
+          title={"TikTok"}
+          value={getUserDetailsById?.data.tiktok}
         />
         <EmployeeDetailCard
-          title={
-            "Empljredo ec d ec  ced e cde ds wefcd s eds  edw sewd syee Name"
-          }
-          value={
-            "Adijmkjnmk njmknj mkn,,,,,,,,,,,ryhybgdvf etbvfcbtevfcsdgbjhncdsxvgbhfdcsxbhjfj mk njkm jkm mkmk km klmmlffffffffffffjjjjjjjjjtya"
-          }
+          title={"Twitter"}
+          value={getUserDetailsById?.data.twitter}
         />
       </ScrollView>
     </View>

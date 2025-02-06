@@ -1,8 +1,8 @@
 import axiosInstance from "./axiosInstance ";
 
-export const PostUserName = async ({ userId }) => {
+export const PostUserName = async ({ _id }) => {
   const response = await axiosInstance.post("users/getUserDetailsById", {
-    userId,
+    userId: _id,
   });
   return response.data;
 };

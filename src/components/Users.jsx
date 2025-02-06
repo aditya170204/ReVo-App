@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -12,7 +13,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
 import Dashboard from "./Dashboard";
-import { getUserList } from "../api/fetchApi";
+import { getUserList, UserListingData } from "../api/fetchApi";
 import { useQuery } from "react-query";
 
 const Users = () => {
@@ -28,16 +29,21 @@ const Users = () => {
   ];
 
   const {
-    data: userList,
+    data: getUserDetailsById,
     error,
     isLoading,
   } = useQuery({
     queryFn: () => {
-      return getUserList();
+      return UserListingData({ getUserDetailsById });
     },
-    queryKey: ["getUserList"],
+    queryKey: ["getUserDetailsById", "getUserDetailsById"],
   });
-  // console.log("userList", userList);
+  console.log("getUserDetailsById", getUserDetailsById?.data);
+
+  //
+
+  //
+
   return (
     // <ScrollView>
     <View style={{ padding: 20, marginTop: 20 }}>
@@ -112,59 +118,24 @@ const Users = () => {
           data={data}
         />
       </View>
-      <ScrollView
+
+      <FlatList
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
-      >
-        <EmployeeCard
-          name={
-            "adityaRajadity aRajadityaRa jadit yaRaj  adaRa jadit kkkkkkkkkkkkkkkkk kkkkkk k k k k k k kk k k  k k k k k  k k k k sk k kks skks ks ksks  yaRajdityaRajadityaRajadityaRaj adityaRajadityaRajadityaRajad  itya Raj adityaRajadityaRaj"
-          }
-          email={"aditya@gmail000000000000000000"}
-          id={"adi17/2009999 999999 999994"}
-          mobileNo={"929799999999999999999"}
-        />
-        <EmployeeCard
-          name={"Aditya0000000000000000"}
-          email={
-            "aditya@gmail0 00000000 00000 pppppppp pppppp pppppppppppppp pppppp0000"
-          }
-          id={"adi17/2004"}
-          mobileNo={"929799...."}
-        />
-        <EmployeeCard
-          name={"Aditya00000000000000000000000"}
-          email={"aditya@gmail0000000ooo00000000000"}
-          id={
-            "adi17/2004......... gggg yuhjjjfrytugyh frytgu yrft fty ft  ftgut fgubh gyuhb"
-          }
-          mobileNo={"929799...."}
-        />
-        <EmployeeCard
-          name={"Aditya00000000000000000000000"}
-          email={"aditya@gmail000000000000000000"}
-          id={"adi17/2004"}
-          mobileNo={"929799...t ugybh ygibhj yihnj gyihbnj gyibh."}
-        />
-        <EmployeeCard
-          name={"Aditya00000000000000000000000"}
-          email={"aditya@gmail000000000000000000"}
-          id={"adi17/20ooooooooooooooooooooo04"}
-          mobileNo={"929799...."}
-        />
-        <EmployeeCard
-          name={"Aditya00000000000000000000000"}
-          email={"aditya@gmail 00 0000000000000"}
-          id={"adi17/2004"}
-          mobileNo={"929ooooooooooooooooooo799...."}
-        />
-        <EmployeeCard
-          name={"Aditya00000000000000000000000"}
-          email={"aditya@gmail000000000000000000"}
-          id={"adi17/2004"}
-          mobileNo={"929799...."}
-        />
-      </ScrollView>
+        data={getUserDetailsById?.data}
+        renderItem={({ item }) => {
+          console.log("first");
+          return (
+            <EmployeeCard
+              id={item?._id}
+              email={item?.email}
+              mobileNo={item?.mobile}
+              name={item?.name}
+              role={item?.role}
+            />
+          );
+        }}
+      />
     </View>
   );
 };

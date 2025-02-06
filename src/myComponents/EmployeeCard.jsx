@@ -19,8 +19,9 @@ const SvgComponent = (props) => (
   </Svg>
 );
 // export default SvgComponent;
-const EmployeeCard = ({ name, id, email, mobileNo }) => {
+const EmployeeCard = ({ id, name, role, email, mobileNo }) => {
   const navigation = useNavigation();
+  console.log("asdasd", id);
   return (
     <View
       style={{
@@ -41,7 +42,7 @@ const EmployeeCard = ({ name, id, email, mobileNo }) => {
       >
         <View style={{ width: "13%" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("EmployeeDetails")}
+            onPress={() => navigation.navigate("EmployeeDetails", { id })}
             // key={"a"}
             style={{
               width: 40,
@@ -58,7 +59,7 @@ const EmployeeCard = ({ name, id, email, mobileNo }) => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("EmployeeDetails");
+            navigation.navigate("EmployeeDetails", { id });
           }}
           key={"b"}
           style={{
@@ -83,10 +84,8 @@ const EmployeeCard = ({ name, id, email, mobileNo }) => {
               <Text style={{ fontSize: 15 }}>{name}</Text>
             </View>
             <View key={"e"} style={{ width: "47%" }}>
-              <Text style={{ fontWeight: "600", fontSize: 15 }}>
-                Employe ID :
-              </Text>
-              <Text style={{ fontSize: 15 }}>{id}</Text>
+              <Text style={{ fontWeight: "600", fontSize: 15 }}>Role :</Text>
+              <Text style={{ fontSize: 15 }}>{role}</Text>
             </View>
           </View>
           <View
