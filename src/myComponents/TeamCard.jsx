@@ -19,8 +19,16 @@ const SvgComponent = (props) => (
   </Svg>
 );
 
-const TeamCard = ({ teamName, ManagerName, teamLead, totalMembers }) => {
+const TeamCard = ({
+  data,
+  teamName,
+  ManagerName,
+  teamLead,
+  totalMembers,
+  onPress,
+}) => {
   const navigation = useNavigation();
+  console.log("asdasd");
 
   return (
     <View
@@ -42,7 +50,7 @@ const TeamCard = ({ teamName, ManagerName, teamLead, totalMembers }) => {
       >
         <View style={{ width: "13%" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("TeamDetails")}
+            onPress={() => navigation.navigate("TeamDetails", { id })}
             // key={"a"}
             style={{
               width: 40,
@@ -57,8 +65,9 @@ const TeamCard = ({ teamName, ManagerName, teamLead, totalMembers }) => {
             <Text style={{ fontWeight: "bold", color: "white" }}>E</Text>
           </TouchableOpacity>
         </View>
-        <View
-          key={"b"}
+        <TouchableOpacity
+          // key={"b"}
+          onPress={onPress}
           style={{
             // backgroundColor: "green",
             width: "84.5%",
@@ -67,20 +76,20 @@ const TeamCard = ({ teamName, ManagerName, teamLead, totalMembers }) => {
           }}
         >
           <View
-            key={"c"}
+            // key={"c"}
             style={{
               // backgroundColor: "pink",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
           >
-            <View key={"d"} style={{ width: "47%" }}>
+            <View style={{ width: "47%" }}>
               <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 Team Name :
               </Text>
               <Text style={{ fontSize: 15 }}>{teamName}</Text>
             </View>
-            <View key={"e"} style={{ width: "47%" }}>
+            <View style={{ width: "47%" }}>
               <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 Manager Name :
               </Text>
@@ -88,27 +97,27 @@ const TeamCard = ({ teamName, ManagerName, teamLead, totalMembers }) => {
             </View>
           </View>
           <View
-            key={"f"}
+            // key={"f"}
             style={{
               // backgroundColor: "orange",
               flexDirection: "row",
               justifyContent: "space-between",
             }}
           >
-            <View key={"g"} style={{ width: "47%" }}>
+            <View style={{ width: "47%" }}>
               <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 Team Lead :
               </Text>
               <Text style={{ fontSize: 15 }}>{teamLead}</Text>
             </View>
-            <View key={"h"} style={{ width: "47%" }}>
+            <View style={{ width: "47%" }}>
               <Text style={{ fontWeight: "600", fontSize: 15 }}>
                 Total Members :
               </Text>
               <Text style={{ fontSize: 15 }}>{totalMembers}</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
       <View
         style={{

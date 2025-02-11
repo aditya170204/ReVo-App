@@ -30,7 +30,7 @@ const EmployeeDetails = () => {
     queryKey: ["getUserDetailsById", params?.id],
     enabled: !!params?.id,
   });
-  console.log("getUserDetailsById", getUserDetailsById?.data.name);
+  console.log("getUserDetailsById", getUserDetailsById?.data);
 
   //
 
@@ -72,52 +72,52 @@ const EmployeeDetails = () => {
         <ProfileDetailSection sectionTitle={"EMPLOYEE INFORMATION"} />
         <EmployeeDetailCard
           title={"Employee Name"}
-          value={getUserDetailsById?.data.name}
+          value={getUserDetailsById?.data?.name}
         />
         <EmployeeDetailCard
           title={"Employee Email"}
-          value={getUserDetailsById?.data.email}
+          value={getUserDetailsById?.data?.email}
         />
         <EmployeeDetailCard
           title={"Mobile Number"}
-          value={getUserDetailsById?.data.mobile}
+          value={getUserDetailsById?.data?.mobile}
         />
         <EmployeeDetailCard
           title={"Role"}
-          value={getUserDetailsById?.data.role}
+          value={getUserDetailsById?.data?.role}
         />
         <EmployeeDetailCard
           title={"Employee Code"}
-          value={getUserDetailsById?.data.empCode}
+          value={getUserDetailsById?.data?.empCode}
         />
         <EmployeeDetailCard
           title={"Department"}
-          value={getUserDetailsById?.data.department}
+          value={getUserDetailsById?.data?.department}
         />
         <ProfileDetailSection sectionTitle={"ADDRESS INFORMATION"} />
         <EmployeeDetailCard
           title={"House/Flat Address"}
-          value={getUserDetailsById?.data.currentAddress.currentAdd}
+          value={getUserDetailsById?.data?.currentAddress?.currentAdd}
         />
         <EmployeeDetailCard
           title={"Address Line 2"}
-          value={getUserDetailsById?.data.currentAddress.currentAdd2}
+          value={getUserDetailsById?.data?.currentAddress?.currentAdd2}
         />
         <EmployeeDetailCard
           title={"City"}
-          value={getUserDetailsById?.data.currentAddress.currentCity}
+          value={getUserDetailsById?.data?.currentAddress?.currentCity}
         />
         <EmployeeDetailCard
           title={"State"}
-          value={getUserDetailsById?.data.currentAddress.currentState}
+          value={getUserDetailsById?.data?.currentAddress?.currentState}
         />
         <EmployeeDetailCard
           title={"Country"}
-          value={getUserDetailsById?.data.currentAddress.currentCountry}
+          value={getUserDetailsById?.data?.currentAddress?.currentCountry}
         />
         <EmployeeDetailCard
           title={"Post Code"}
-          value={getUserDetailsById?.data.currentAddress.currentPostCode}
+          value={getUserDetailsById?.data?.currentAddress?.currentPostCode}
         />
         <ProfileDetailSection sectionTitle={"BANK INFORMATION"} />
         <EmployeeDetailCard

@@ -16,3 +16,18 @@ export const UserListingData = async () => {
   );
   return response.data;
 };
+export const getTeamList = async () => {
+  const response = await axiosInstance.get(
+    "team?page=2&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize="
+  );
+  return response.data;
+};
+export const getTeamDetails = async ({ _id }) => {
+  const response = await axiosInstance.get(
+    "team?page=1&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize=s",
+    {
+      userId: _id,
+    }
+  );
+  return response.data;
+};
