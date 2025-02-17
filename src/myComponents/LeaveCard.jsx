@@ -8,6 +8,7 @@ const LeaveCard = ({
   startDate,
   endDate,
   reasonForLeave,
+  onPress,
 }) => {
   const navigation = useNavigation();
 
@@ -31,7 +32,7 @@ const LeaveCard = ({
       >
         <View style={{ width: "13%" }}>
           <TouchableOpacity
-            onPress={() => navigation.navigate("EmployeeDetails")}
+            onPress={() => navigation.navigate("EmployeeDetails", { id })}
             key={"a"}
             style={{
               width: 40,
@@ -48,9 +49,7 @@ const LeaveCard = ({
         </View>
 
         <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("LeaveDetails");
-          }}
+          onPress={onPress}
           key={"b"}
           style={{
             // backgroundColor: "green",

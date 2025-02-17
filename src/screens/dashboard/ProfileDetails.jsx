@@ -9,6 +9,8 @@ import React from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import InfoCard from "../../myComponents/InfoCard";
 import { useNavigation } from "@react-navigation/native";
+import { useQuery } from "react-query";
+import { profileDetails } from "../../api/fetchApi";
 
 const ProfileDetails = () => {
   console.log("ProfileDetails screen rendered");

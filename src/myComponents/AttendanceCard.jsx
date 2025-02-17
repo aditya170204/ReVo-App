@@ -2,8 +2,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 
-const AttendanceCard = ({ EmployeeName, Email, mobileNo, Role }) => {
+const AttendanceCard = ({ EmployeeName, Email, mobileNo, Role, onPress }) => {
   const navigation = useNavigation();
+  console.log("yoyo yoyo");
 
   return (
     <View
@@ -40,7 +41,8 @@ const AttendanceCard = ({ EmployeeName, Email, mobileNo, Role }) => {
             <Text style={{ fontWeight: "bold", color: "white" }}>E</Text>
           </TouchableOpacity>
         </View>
-        <View
+        <TouchableOpacity
+          onPress={onPress}
           key={"b"}
           style={{
             // backgroundColor: "green",
@@ -89,7 +91,7 @@ const AttendanceCard = ({ EmployeeName, Email, mobileNo, Role }) => {
               <Text style={{ fontSize: 15 }}>{Role}</Text>
             </View>
           </View>
-        </View>
+        </TouchableOpacity>
       </View>
     </View>
   );

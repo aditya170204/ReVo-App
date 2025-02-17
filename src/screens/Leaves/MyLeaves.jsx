@@ -12,9 +12,25 @@ import { useNavigation } from "@react-navigation/native";
 import Svg, { Path } from "react-native-svg";
 import LeaveCard from "../../myComponents/LeaveCard";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { myLeaveList } from "../../api/fetchApi";
+import { useQuery } from "react-query";
+import { FlatList } from "react-native-gesture-handler";
 
 const MyLeaves = () => {
   const navigation = useNavigation();
+
+  const {
+    data: getMyLeaveDetailsById,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return myLeaveList({ getMyLeaveDetailsById });
+    },
+    queryKey: ["getMyLeaveDetailsById", "getMyLeaveDetailsById"],
+  });
+  console.log("getMyLeaveDetailsById", getMyLeaveDetailsById?.data);
+
   const [selected, setSelected] = useState("");
   const data = [
     { key: "New", value: "New" },
@@ -180,100 +196,28 @@ const MyLeaves = () => {
           data={data}
         />
       </View>
-      <ScrollView
+      <FlatList
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
-      >
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh ugvbh "}
-          endDate={"aditya@gmail.com"}
-          leaveFor={"React-Native Intern"}
-          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh ugvbh "}
-          endDate={"aditya@gmail.com"}
-          leaveFor={"React-Native Intern"}
-          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh io ij oijr jiroig ijrijorj ugvbh "}
-          endDate={"aditya@gmail.com"}
-          leaveFor={"React-Native Intern"}
-          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh ugvbh "}
-          endDate={"aditya joig oijr jigr jirem jierpm@gmail.com"}
-          leaveFor={"React-Native Intern"}
-          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh ugvbh "}
-          endDate={"aditya@gmail.com"}
-          leaveFor={"React-Native Intern"}
-          reasonForLeave={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-        <LeaveCard
-          EmployeeName={"Aditya Raj"}
-          startDate={"gubh uhrfenkcj iuhrjfu rjgvbh "}
-          endDate={"aditya uoe ruoo jrifm jirom@gmail.com"}
-          leaveFor={"React-Nati gu4tr joi jigrove Intern"}
-          reasonForLeave={
-            "979298..876  5rji jgeri 0jireo 0j 0jri 0jgrio jiro776 98 865 987 69 876 5678 ;)"
-          }
-        />
-      </ScrollView>
+        data={getMyLeaveDetailsById?.data}
+        renderItem={({ item }) => {
+          console.log("leave list");
+          return (
+            <LeaveCard
+              onPress={() => {
+                console.log("lets go to details");
+                navigation.navigate("LeaveDetails", { item });
+              }}
+              data={getMyLeaveDetailsById}
+              EmployeeName={item?.name}
+              startDate={item?.startDate}
+              endDate={item?.endDate}
+              leaveFor={item?.days}
+              reasonForLeave={item?.reason}
+            />
+          );
+        }}
+      ></FlatList>
     </View>
   );
 };

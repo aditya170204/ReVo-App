@@ -6,13 +6,29 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import ProfileDetailSection from "../../myComponents/ProfileDetailSection";
 import EmployeeDetailCard from "../../myComponents/EmployeeDetailCard";
+import { myConsole } from "../../utils/myConsole";
+import { useQuery } from "react-query";
 
 const LeaveDetails = () => {
+  const { params } = useRoute();
+  myConsole("params ok boss", params?.item?.name);
   const navigation = useNavigation();
+  const {
+    data: getLeaveDetailsById,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return getTeamDetails({ _id: params?.id });
+    },
+    queryKey: ["getLeaveDetailsById", params?.id],
+    enabled: !!params?.id,
+  });
+  console.log("getLeaveDetailsById", getLeaveDetailsById?.data);
 
   return (
     <View style={{ padding: 20, marginTop: 25, marginBottom: 50 }}>
@@ -47,44 +63,41 @@ const LeaveDetails = () => {
         <ProfileDetailSection sectionTitle={"EMPLOYEE INFORMATION"} />
         <EmployeeDetailCard
           title={"Employee Name"}
-          value={"Aditya  eihrj hrui hnrffu njo fimo iomsm"}
+          value={params?.item?.name}
         />
-        <EmployeeDetailCard
-          title={"Role"}
-          value={"Aditya u ernfueri9t53834eru3048 rji43 09u 0ri fjir j rioj fi"}
-        />
+        <EmployeeDetailCard title={"Role"} value={params?.item?.role} />
         <EmployeeDetailCard
           title={"Mobile Number"}
-          value={"Aditya  hurf fn oisllsemk."}
+          value={params?.item?.mobile}
         />
 
         <ProfileDetailSection sectionTitle={"LEAVE INFORMATION"} />
         <EmployeeDetailCard
           title={"Reason For Leave"}
-          value={"Aditya jiofrjioefsjies i"}
+          value={params?.item?.reason}
         />
         <EmployeeDetailCard
           title={"Total Days Of Leave"}
-          value={"Aditya  jriok  isrlfkd"}
+          value={params?.item?.days}
         />
-        <EmployeeDetailCard title={"Leave Type"} value={"Aditya  joiroji f"} />
+        <EmployeeDetailCard
+          title={"Leave Type"}
+          value={params?.item?.payType}
+        />
         <EmployeeDetailCard
           title={"Start Date"}
-          value={"Aditya  ori jioljp fedpji f"}
+          value={params?.item?.startDate}
         />
-        <EmployeeDetailCard
-          title={"End Date"}
-          value={"Aditya ijr jiij j ppj "}
-        />
+        <EmployeeDetailCard title={"End Date"} value={params?.item?.endDate} />
         <EmployeeDetailCard
           title={"Special Remark"}
-          value={"Adt ref gref gjioej io ijji iitya"}
+          value={params?.item?.remark}
         />
 
         <ProfileDetailSection sectionTitle={"ATTACHMENTS"} />
         <EmployeeDetailCard
           title={"Supported Document"}
-          value={"Adire f refd  gurg oi ikmlrk. jgrmi jp iorf d rftya"}
+          value={params?.item?.doc}
         />
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
           <TouchableOpacity

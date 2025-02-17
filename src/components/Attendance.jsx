@@ -1,4 +1,5 @@
 import {
+  FlatList,
   ScrollView,
   StyleSheet,
   Text,
@@ -11,9 +12,22 @@ import { SelectList } from "react-native-dropdown-select-list";
 import { useNavigation } from "@react-navigation/native";
 import Svg, { Path } from "react-native-svg";
 import AttendanceCard from "../myComponents/AttendanceCard";
+import { attendanceList } from "../api/fetchApi";
+import { useQuery } from "react-query";
 
 const Attendance = () => {
   const navigation = useNavigation();
+  const {
+    data: getAttendanceDetailsById,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return attendanceList({ getAttendanceDetailsById });
+    },
+    queryKey: ["getAttendanceDetailsById", "getAttendanceDetailsById"],
+  });
+  console.log("getAttendanceDetailsById", getAttendanceDetailsById?.data);
   const [selected, setSelected] = useState("");
   const data = [
     { key: "Issues Raised", value: "Issues Raised" },
@@ -133,57 +147,26 @@ const Attendance = () => {
           data={data}
         />
       </View>
-      <ScrollView
+      <FlatList
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
-      >
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..876 776 98 865 987 69 876 5678 ;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={
-            "React-Native Intern  tygih iygbh yhuj ouj gybhuj nygi hhu j iojklmfy tgubyhinjl"
-          }
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={
-            "aditya@gmail.com gyibh ujnol ojikml rfutbgihnjm poikljf tugibhnjp ikljnk"
-          }
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj g iyhujnmoi jmk ibhnjoji kmljiok m"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-        <AttendanceCard
-          EmployeeName={"Aditya Raj"}
-          Email={"aditya@gmail.com"}
-          Role={"React-Native Intern"}
-          mobileNo={"979298..;)"}
-        />
-      </ScrollView>
+        data={getAttendanceDetailsById?.data}
+        renderItem={({ item }) => {
+          console.log("got attendance");
+          return (
+            <AttendanceCard
+              onPress={() => {
+                console.log("ewwqrewre");
+                navigation.navigate("LeaveDetails", { item });
+              }}
+              EmployeeName={item?.name}
+              Email={item?.userDetails?.email}
+              Role={item?.userDetails?.role}
+              mobileNo={item?.userDetails?.mobile}
+            />
+          );
+        }}
+      ></FlatList>
     </View>
   );
 };

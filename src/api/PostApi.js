@@ -6,3 +6,7 @@ export const PostUserName = async ({ _id }) => {
   });
   return response.data;
 };
+export const profileDetails = async () => {
+  const response = await axiosInstance.post("users/getUserDetailsById");
+  return response.data;
+};

@@ -5,16 +5,16 @@ import { useQuery } from "react-query";
 
 const EmployeeDetailCard = ({ title, value }) => {
   // "6762be500e895b4806b12d6d"
-  const {
-    data: userList,
-    error,
-    isLoading,
-  } = useQuery({
-    queryFn: () => {
-      return PostUserName();
-    },
-    queryKey: ["getUserList"],
-  });
+  // const {
+  //   data: userList,
+  //   error,
+  //   isLoading,
+  // } = useQuery({
+  //   queryFn: () => {
+  //     return PostUserName();
+  //   },
+  //   queryKey: ["getUserList"],
+  // });
 
   return (
     <View style={{ flexDirection: "row", padding: 5, paddingLeft: 10 }}>

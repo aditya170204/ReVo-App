@@ -31,3 +31,30 @@ export const getTeamDetails = async ({ _id }) => {
   );
   return response.data;
 };
+export const attendanceList = async ({ _id }) => {
+  const response = await axiosInstance.get(
+    "attendance?page=1&status=present&limit=10&search=&start=&end=&agentArrFilter=[]",
+    {
+      userId: _id,
+    }
+  );
+  return response.data;
+};
+export const leaveList = async ({ _id }) => {
+  const response = await axiosInstance.get(
+    "leave?page=1&status=new&limit=10&search=&employeeNameArr=[]&endLeaveDate=",
+    {
+      userId: _id,
+    }
+  );
+  return response.data;
+};
+export const myLeaveList = async ({ _id }) => {
+  const response = await axiosInstance.get(
+    "leave?page=1&status=new&limit=10&search=&userId=668e6a8d30945ec9f66e038c",
+    {
+      userId: _id,
+    }
+  );
+  return response.data;
+};

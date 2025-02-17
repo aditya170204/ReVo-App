@@ -2,15 +2,32 @@ import { View, Text } from "react-native";
 import React from "react";
 import ProfileDetailSection from "./ProfileDetailSection";
 import UserDetail from "./UserDetail";
+import { useQuery } from "react-query";
+import { profileDetails } from "../api/PostApi";
+// import { profileDetails } from "../api/fetchApi";
 
 const InfoCard = () => {
+  const {
+    data: getUserDetailsById,
+    error,
+    isLoading,
+  } = useQuery({
+    queryFn: () => {
+      return profileDetails({ getUserDetailsById });
+    },
+    queryKey: ["getUserDetailsById", "getUserDetailsById"],
+  });
+  console.log("getUserDetailsById", getUserDetailsById?.data);
   return (
     <View>
       <ProfileDetailSection sectionTitle={"PERSONAL INFORMATION"} />
-      <UserDetail title={"Name"} value={"Aditya"} />
-      <UserDetail title={"Role"} value={"in danger"} />
-      <UserDetail title={"Email"} value={"Aditya@gmail"} />
-      <UserDetail title={"Mobile number"} value={"97929899"} />
+      <UserDetail title={"Name"} value={getUserDetailsById?.data?.name} />
+      <UserDetail title={"Role"} value={getUserDetailsById?.data?.role} />
+      <UserDetail title={"Email"} value={getUserDetailsById?.data?.email} />
+      <UserDetail
+        title={"Mobile number"}
+        value={getUserDetailsById?.data?.mobile}
+      />
       <ProfileDetailSection sectionTitle={"ADDRESS INFORMATION"} />
       <UserDetail title={"House/Flat Address"} value={"Aditya"} />
       <UserDetail title={"City"} value={"Aditya"} />
