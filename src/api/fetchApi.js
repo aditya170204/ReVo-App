@@ -10,21 +10,21 @@ export const UserListing = async () => {
   );
   return response.data;
 };
-export const UserListingData = async () => {
+export const UserListingData = async ({ page = 1, status = "new" }) => {
   const response = await axiosInstance.get(
-    "users?page=1&status=draft&limit=10&search=&role=&startDateOfJoining=&endDateofJoining=&startDateOfCreated=&endDateOfCreated="
+    `users?page=${page}&status=${status}&limit=10&search=&role=&startDateOfJoining=&endDateofJoining=&startDateOfCreated=&endDateOfCreated=`
   );
   return response.data;
 };
-export const getTeamList = async () => {
+export const getTeamList = async (page = 1) => {
   const response = await axiosInstance.get(
-    "team?page=2&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize="
+    `team?page=${page}&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize=`
   );
   return response.data;
 };
 export const getTeamDetails = async ({ _id }) => {
   const response = await axiosInstance.get(
-    "team?page=1&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize=s",
+    `team?page=1&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize=s`,
     {
       userId: _id,
     }

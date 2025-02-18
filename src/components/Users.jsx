@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   FlatList,
   ScrollView,
   StyleSheet,
@@ -7,45 +8,53 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
-import Dashboard from "./Dashboard";
-import { getUserList, UserListingData } from "../api/fetchApi";
+import { UserListingData } from "../api/fetchApi";
 import { useQuery } from "react-query";
 
 const Users = () => {
   const navigation = useNavigation();
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState("draft");
+  const [page, setPage] = useState(1);
+  const [userList, setUserList] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
+
   const data = [
-    { key: "New", value: "New" },
-    { key: "Drafts", value: "Drafts" },
-    { key: "Pending", value: "Pending" },
-    { key: "Approved", value: "Approved" },
-    { key: "Rejected", value: "Rejected" },
-    { key: "Deactivate", value: "Deactivate" },
+    { key: "new", value: "new" },
+    { key: "draft", value: "draft" },
+    { key: "pending", value: "pending" },
+    { key: "approved", value: "approved" },
+    { key: "rejected", value: "rejected" },
+    { key: "deactivate", value: "deactivate" },
   ];
 
-  const {
-    data: getUserDetailsById,
-    error,
-    isLoading,
-  } = useQuery({
-    queryFn: () => {
-      return UserListingData({ getUserDetailsById });
-    },
-    queryKey: ["getUserDetailsById", "getUserDetailsById"],
-  });
-  console.log("getUserDetailsById", getUserDetailsById?.data);
+  const fetchUsers = async () => {
+    if (isFetching) return;
+    setIsFetching(true);
 
-  //
+    try {
+      const fetchedData = await UserListingData({ page, Status: selected });
+      setUserList((prevData) => [...prevData, ...fetchedData.data]);
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    } finally {
+      setIsFetching(false);
+    }
+  };
 
-  //
+  useEffect(() => {
+    fetchUsers();
+  }, [page, selected]);
+
+  const loadMore = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
 
   return (
-    // <ScrollView>
     <View style={{ padding: 20, marginTop: 20 }}>
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <Text style={{ fontSize: 25, fontWeight: "bold", padding: 12 }}>
@@ -59,8 +68,6 @@ const Users = () => {
             backgroundColor: "#9A4D49",
             justifyContent: "center",
             alignItems: "center",
-            // width: 110,
-            // height: 50,
             padding: 10,
             borderRadius: 12,
             marginTop: 10,
@@ -71,6 +78,7 @@ const Users = () => {
           </Text>
         </TouchableOpacity>
       </View>
+
       <View
         style={{
           flexDirection: "row",
@@ -103,28 +111,34 @@ const Users = () => {
           <MaterialIcons color={"white"} name={"person-add"} size={25} />
         </TouchableOpacity>
       </View>
+
       <View style={{ marginTop: 20 }}>
         <SelectList
+          defaultOption={"newrr"}
           boxStyles={{ borderWidth: 0.5 }}
-          // dropdownShown={true}
-          // arrowicon={true}
-          // closeicon={true}
-          // defaultOption={"pending"}
-          // ref={}
           dropdownStyles={{
             borderWidth: 0.5,
           }}
           setSelected={setSelected}
           data={data}
+          // onSelect={selected}
         />
       </View>
 
       <FlatList
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.1}
+        ListFooterComponent={() => {
+          return isFetching ? (
+            <View>
+              <ActivityIndicator size={"large"} />
+            </View>
+          ) : null;
+        }}
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
-        data={getUserDetailsById?.data}
+        data={userList}
         renderItem={({ item }) => {
-          console.log("first");
           return (
             <EmployeeCard
               id={item?._id}
