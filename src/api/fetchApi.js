@@ -11,18 +11,15 @@ export const UserListing = async () => {
   );
   return response.data;
 };
-// export const UserListingData = async ({ page = 1, status = "new" }) => {
-//   const response = await axiosInstance.get(
-//     `users?page=${page}&status=${status}&limit=10&search=&role=&startDateOfJoining=&endDateofJoining=&startDateOfCreated=&endDateOfCreated=`
-//   );
-//   myConsole("response.data", response);
-//   return response.data;
-// };
 
-export const UserListingData = async ({ page = 1, status = "new" }) => {
+//
+//
+
+export const UserListingData = async ({ status = "new" }) => {
   const response = await axiosInstance.get("users", {
     params: {
       status,
+
       limit: 10,
     },
   });
@@ -30,6 +27,17 @@ export const UserListingData = async ({ page = 1, status = "new" }) => {
   return response.data;
 };
 
+export const userListPage = async (page = 1) => {
+  const response = await axiosInstance.get("users", {
+    params: {
+      page,
+    },
+  });
+  myConsole("response.data", response);
+};
+//
+
+//
 export const getTeamList = async (page = 1) => {
   const response = await axiosInstance.get(
     `team?page=${page}&search=&managerArrFilter=[]&teamLeadArrFilter=[]&startDateCreated=&endDateCreated=&startTeamSize=&endTeamSize=`

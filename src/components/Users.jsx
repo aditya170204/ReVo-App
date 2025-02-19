@@ -13,9 +13,14 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
-import { UserListingData } from "../api/fetchApi";
+import {
+  UserListingData,
+  UserListingDataPage,
+  userListPage,
+} from "../api/fetchApi";
 import { useQuery } from "react-query";
 import { myConsole } from "../utils/myConsole";
+import { Button } from "@react-navigation/elements";
 
 const Users = () => {
   const navigation = useNavigation();
@@ -38,10 +43,23 @@ const Users = () => {
     setIsFetching(true);
 
     try {
-      const fetchedData = await UserListingData({ page, status: selected });
+      const fetchedData = await UserListingData({ status: selected });
       setUserList(fetchedData.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
+    } finally {
+      setIsFetching(false);
+    }
+  };
+  const fetchuserListPage = async () => {
+    if (isFetching) return;
+    setIsFetching(true);
+
+    try {
+      const fetchedData = await userListPage(page);
+      setPage((prevData) => [...prevData, ...fetchedData.data]);
+    } catch (error) {
+      console.error("error is", error);
     } finally {
       setIsFetching(false);
     }
@@ -50,8 +68,14 @@ const Users = () => {
   useEffect(() => {
     fetchUsers();
   }, [selected]);
+  //
+  // useEffect(() => {
+  //   fetchuserListPage();
+  // }, [page]);
 
   const loadMore = () => {
+    // if (!isFetching) {
+    // }
     setPage((prevPage) => prevPage + 1);
   };
 
@@ -128,12 +152,13 @@ const Users = () => {
       </View>
 
       <FlatList
-        onEndReached={loadMore}
+        onEndReached={() => loadMore}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => {
           return isFetching ? (
             <View>
               <ActivityIndicator size={"large"} />
+              {/* <Button onPress={loadMore}>load more</Button> */}
             </View>
           ) : null;
         }}
