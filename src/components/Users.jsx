@@ -15,10 +15,11 @@ import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
 import { UserListingData } from "../api/fetchApi";
 import { useQuery } from "react-query";
+import { myConsole } from "../utils/myConsole";
 
 const Users = () => {
   const navigation = useNavigation();
-  const [selected, setSelected] = useState("draft");
+  const [selected, setSelected] = useState("new");
   const [page, setPage] = useState(1);
   const [userList, setUserList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
@@ -29,7 +30,7 @@ const Users = () => {
     { key: "pending", value: "pending" },
     { key: "approved", value: "approved" },
     { key: "rejected", value: "rejected" },
-    { key: "deactivate", value: "deactivate" },
+    { key: "deactive", value: "deactive" },
   ];
 
   const fetchUsers = async () => {
@@ -37,8 +38,8 @@ const Users = () => {
     setIsFetching(true);
 
     try {
-      const fetchedData = await UserListingData({ page, Status: selected });
-      setUserList((prevData) => [...prevData, ...fetchedData.data]);
+      const fetchedData = await UserListingData({ page, status: selected });
+      setUserList(fetchedData.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
     } finally {
@@ -48,7 +49,7 @@ const Users = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [page, selected]);
+  }, [selected]);
 
   const loadMore = () => {
     setPage((prevPage) => prevPage + 1);
@@ -114,14 +115,15 @@ const Users = () => {
 
       <View style={{ marginTop: 20 }}>
         <SelectList
-          defaultOption={"newrr"}
+          defaultOption={"new"}
           boxStyles={{ borderWidth: 0.5 }}
           dropdownStyles={{
             borderWidth: 0.5,
           }}
-          setSelected={setSelected}
+          setSelected={(v) => {
+            setSelected(v);
+          }}
           data={data}
-          // onSelect={selected}
         />
       </View>
 
