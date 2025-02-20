@@ -1,3 +1,4 @@
+import { useInfiniteQuery } from "react-query";
 import { myConsole } from "../utils/myConsole";
 import axiosInstance from "./axiosInstance ";
 
@@ -15,26 +16,19 @@ export const UserListing = async () => {
 //
 //
 
-export const UserListingData = async ({ status = "new" }) => {
-  const response = await axiosInstance.get("users", {
-    params: {
-      status,
-
-      limit: 10,
-    },
-  });
-  myConsole("response.data", response);
-  return response.data;
-};
-
-export const userListPage = async (page = 1) => {
+export const UserListingData = async ({ status = "new", page = 1 }) => {
   const response = await axiosInstance.get("users", {
     params: {
       page,
+      status,
+      limit: 10,
     },
   });
-  myConsole("response.data", response);
+
+  myConsole("response.data", response.data);
+  return response.data;
 };
+
 //
 
 //

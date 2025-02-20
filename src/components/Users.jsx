@@ -13,14 +13,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
-import {
-  UserListingData,
-  UserListingDataPage,
-  userListPage,
-} from "../api/fetchApi";
-import { useQuery } from "react-query";
-import { myConsole } from "../utils/myConsole";
-import { Button } from "@react-navigation/elements";
+import { UserListingData } from "../api/fetchApi";
 
 const Users = () => {
   const navigation = useNavigation();
@@ -29,7 +22,7 @@ const Users = () => {
   const [userList, setUserList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
-  const data = [
+  const datas = [
     { key: "new", value: "new" },
     { key: "draft", value: "draft" },
     { key: "pending", value: "pending" },
@@ -43,23 +36,20 @@ const Users = () => {
     setIsFetching(true);
 
     try {
-      const fetchedData = await UserListingData({ status: selected });
-      setUserList(fetchedData.data);
+      // Reset the page when filter changes
+      if (page === 1) {
+        setUserList([]);
+      }
+
+      const fetchedData = await UserListingData({
+        status: selected,
+        page: page,
+      });
+
+      setUserList((prevData) => [...prevData, ...fetchedData.data]);
+      console.log("Fetched user data: ", fetchedData.data);
     } catch (error) {
       console.error("Error fetching user data:", error);
-    } finally {
-      setIsFetching(false);
-    }
-  };
-  const fetchuserListPage = async () => {
-    if (isFetching) return;
-    setIsFetching(true);
-
-    try {
-      const fetchedData = await userListPage(page);
-      setPage((prevData) => [...prevData, ...fetchedData.data]);
-    } catch (error) {
-      console.error("error is", error);
     } finally {
       setIsFetching(false);
     }
@@ -67,16 +57,12 @@ const Users = () => {
 
   useEffect(() => {
     fetchUsers();
-  }, [selected]);
-  //
-  // useEffect(() => {
-  //   fetchuserListPage();
-  // }, [page]);
+  }, [selected, page]);
 
   const loadMore = () => {
-    // if (!isFetching) {
-    // }
-    setPage((prevPage) => prevPage + 1);
+    if (!isFetching) {
+      setPage((prevPage) => prevPage + 1);
+    }
   };
 
   return (
@@ -146,22 +132,49 @@ const Users = () => {
           }}
           setSelected={(v) => {
             setSelected(v);
+            setPage(1); // Reset the page when filter changes
           }}
-          data={data}
+          data={datas}
         />
       </View>
 
       <FlatList
-        onEndReached={() => loadMore}
+        // onEndReached={loadMore}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => {
-          return isFetching ? (
-            <View>
-              <ActivityIndicator size={"large"} />
-              {/* <Button onPress={loadMore}>load more</Button> */}
-            </View>
-          ) : null;
+          return (
+            <TouchableOpacity
+              style={{
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+              onPress={loadMore}
+            >
+              <Text
+                style={{
+                  backgroundColor: "lightgrey",
+                  borderRadius: 20,
+                  height: 28,
+                  width: "90%",
+                  color: "white",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  textAlignVertical: "center",
+                  textAlign: "center",
+                }}
+              >
+                Load More
+              </Text>
+            </TouchableOpacity>
+          );
         }}
+        // ListFooterComponent={() => {
+        //   return (
+        //     <View>
+        //       <ActivityIndicator size={"large"} />
+        //     </View>
+        //   );
+        // }}
         showsVerticalScrollIndicator={false}
         style={{ marginBottom: 170 }}
         data={userList}
