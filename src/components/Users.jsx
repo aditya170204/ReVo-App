@@ -14,6 +14,7 @@ import { SelectList } from "react-native-dropdown-select-list";
 import EmployeeCard from "../myComponents/EmployeeCard";
 import { useNavigation } from "@react-navigation/native";
 import { UserListingData } from "../api/fetchApi";
+import { myConsole } from "../utils/myConsole";
 
 const Users = () => {
   const navigation = useNavigation();
@@ -21,10 +22,13 @@ const Users = () => {
   const [page, setPage] = useState(1);
   const [userList, setUserList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
+  // const [pageNo, setPageNo] = useState(1);
+  // const [totalPage, setTotalPage] = useState(1);
+  const [pagination, setPagination] = useState({});
 
   const datas = [
-    { key: "new", value: "new" },
     { key: "draft", value: "draft" },
+    { key: "new", value: "new" },
     { key: "pending", value: "pending" },
     { key: "approved", value: "approved" },
     { key: "rejected", value: "rejected" },
@@ -47,7 +51,9 @@ const Users = () => {
       });
 
       setUserList((prevData) => [...prevData, ...fetchedData.data]);
-      console.log("Fetched user data: ", fetchedData.data);
+      setPagination(fetchedData.pagination);
+      // setPageNo(fetchedData.pagination.currentPage);
+      // setTotalPage(fetchedData.pagination.totalPages);
     } catch (error) {
       console.error("Error fetching user data:", error);
     } finally {
@@ -60,7 +66,7 @@ const Users = () => {
   }, [selected, page]);
 
   const loadMore = () => {
-    if (!isFetching) {
+    if (!isFetching && pagination?.hasNext) {
       setPage((prevPage) => prevPage + 1);
     }
   };
@@ -136,37 +142,49 @@ const Users = () => {
           }}
           data={datas}
         />
+        <Text style={{ fontSize: 15, textAlign: "right" }}>
+          Page ({pagination?.currentPage || 1}/{pagination?.totalPages || 1})
+        </Text>
       </View>
 
       <FlatList
         // onEndReached={loadMore}
         onEndReachedThreshold={0.1}
         ListFooterComponent={() => {
-          return (
-            <TouchableOpacity
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-              onPress={loadMore}
-            >
-              <Text
+          if (pagination.hasNext === true) {
+            return (
+              <TouchableOpacity
                 style={{
-                  backgroundColor: "lightgrey",
-                  borderRadius: 20,
-                  height: 28,
-                  width: "90%",
-                  color: "white",
-                  fontSize: 15,
-                  fontWeight: 600,
-                  textAlignVertical: "center",
-                  textAlign: "center",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginVertical: 50,
                 }}
+                onPress={loadMore}
               >
-                Load More
-              </Text>
-            </TouchableOpacity>
-          );
+                {isFetching ? (
+                  <View>
+                    <ActivityIndicator size={"large"} />
+                  </View>
+                ) : (
+                  <Text
+                    style={{
+                      backgroundColor: "lightgrey",
+                      borderRadius: 20,
+                      height: 28,
+                      width: "90%",
+                      color: "white",
+                      fontSize: 15,
+                      fontWeight: 600,
+                      textAlignVertical: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    Load More
+                  </Text>
+                )}
+              </TouchableOpacity>
+            );
+          }
         }}
         // ListFooterComponent={() => {
         //   return (
@@ -176,7 +194,7 @@ const Users = () => {
         //   );
         // }}
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: 170 }}
+        style={{ marginBottom: 190 }}
         data={userList}
         renderItem={({ item }) => {
           return (
