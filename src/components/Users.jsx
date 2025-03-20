@@ -204,6 +204,7 @@ const Users = () => {
               mobileNo={item?.mobile}
               name={item?.name}
               role={item?.role}
+              status={selected}
             />
           );
         }}

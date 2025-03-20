@@ -1,12 +1,16 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
+// import { Formik } from "formik";
 
-const DetailsForm = ({ title, detail }) => {
+const DetailsForm = ({ title, onChangeText, onBlur, value }) => {
   return (
     <View style={{ marginVertical: 5 }}>
       <Text style={{ fontWeight: "600", fontSize: 16 }}>{title}</Text>
       <TextInput
-        placeholder={"Enter " + title}
+        onChangeText={onChangeText}
+        onBlur={onBlur}
+        value={value}
+        placeholder={`Enter ${title}`}
         style={{
           borderWidth: 0.5,
           borderRadius: 10,
@@ -15,9 +19,7 @@ const DetailsForm = ({ title, detail }) => {
           //   paddingVertical: 20,
           paddingHorizontal: 10,
         }}
-      >
-        {detail}
-      </TextInput>
+      ></TextInput>
     </View>
   );
 };

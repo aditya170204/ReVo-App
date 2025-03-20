@@ -10,3 +10,7 @@ export const profileDetails = async () => {
   const response = await axiosInstance.post("users/getUserDetailsById");
   return response.data;
 };
+export const userStatus = async () => {
+  const response = await axiosInstance.post("users/userStatusChangeById");
+  return response.data;
+};

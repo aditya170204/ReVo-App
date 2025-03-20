@@ -5,6 +5,7 @@ import CountCard from "../myComponents/CountCard";
 import CountCard2 from "../myComponents/CountCard2";
 import GraphCard from "../myComponents/GraphCard";
 import ProfileArea from "./dashboardCom/ProfileArea";
+import { activeInactiveCRMSvg } from "../assets/svg/svg";
 
 const Dashboard = () => {
   let bord = true;
@@ -22,6 +23,7 @@ const Dashboard = () => {
       >
         <View>
           <ProfileArea />
+          {/* <activeInactiveCRMSvg.agentActive width={30} height={30} /> */}
         </View>
         <GraphCard
           border={true}

@@ -102,9 +102,9 @@ const Leaves = () => {
           }}
         />
         <TouchableOpacity
-          // onPress={() => {
-          //   navigation.navigate("AddEmployee");
-          // }}
+          onPress={() => {
+            navigation.navigate("LeaveCall");
+          }}
           style={{
             backgroundColor: "#D0837F",
             justifyContent: "center",

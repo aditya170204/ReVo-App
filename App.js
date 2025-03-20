@@ -34,6 +34,7 @@ import MyLeaves from "./src/screens/Leaves/MyLeaves";
 import ApplyForLeave from "./src/screens/Leaves/ApplyForLeave";
 import LeaveDetails from "./src/screens/Leaves/LeaveDetails";
 import { QueryClient, QueryClientProvider } from "react-query";
+import LeaveCall from "./src/screens/Leaves/LeaveCall";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -146,6 +147,7 @@ const App = () => {
             <Stack.Screen name="LeaveDetails" component={LeaveDetails} />
             <Stack.Screen name="MyLeaves" component={MyLeaves} />
             <Stack.Screen name="ApplyForLeave" component={ApplyForLeave} />
+            <Stack.Screen name="LeaveCall" component={LeaveCall} />
           </Stack.Navigator>
         </NavigationContainer>
       </QueryClientProvider>
