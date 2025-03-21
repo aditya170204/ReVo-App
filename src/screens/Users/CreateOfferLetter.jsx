@@ -11,6 +11,9 @@ import { useNavigation } from "@react-navigation/native";
 import ProfileDetailSection from "../../myComponents/ProfileDetailSection";
 import DetailsForm from "../../myComponents/DetailsForm";
 import { SelectList } from "react-native-dropdown-select-list";
+import { object, string, number, date } from "yup";
+import { useFormik } from "formik";
+import { myConsole } from "../../utils/myConsole";
 
 const CreateOfferLetter = () => {
   const navigation = useNavigation();
@@ -23,6 +26,30 @@ const CreateOfferLetter = () => {
     { key: "UI/UX/Advertising", value: "UI/UX/Advertising" },
   ];
   const [selected, setSelected] = useState("");
+  const offerLetterSchema = object({
+    dateOfJoining: date().required("Please Enter a Valid Date "),
+    department: string().required("Please Enter a Valid department "),
+    email: string().email().required("Please Enter a Valid email "),
+    name: string().required("Please Enter a Valid name "),
+    offerPackage: number().required("Please Enter a Valid Package "),
+    role: string().required("Please Enter a Valid role "),
+  });
+  const fk = useFormik({
+    initialValues: {
+      dateOfJoining: "",
+      department: "",
+      email: "",
+      name: "",
+      offerPackage: "",
+      role: "",
+    },
+    validationSchema: offerLetterSchema,
+    onSubmit: (values) => {
+      myConsole("", values);
+      navigation.goBack();
+    },
+    // navigation.navigate("CreateOfferLetter");
+  });
 
   return (
     <View style={{ padding: 20, marginTop: 25, marginBottom: 50 }}>
@@ -55,9 +82,42 @@ const CreateOfferLetter = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <ProfileDetailSection sectionTitle={"OFFER DETAILS"} />
-        <DetailsForm title={"Candidate Name"} />
-        <DetailsForm title={"Email Address"} />
-        <DetailsForm title={"Joining Date"} />
+        <DetailsForm
+          title={"Candidate Name"}
+          onChangeText={fk.handleChange("name")}
+          onBlur={fk.handleBlur("name")}
+          value={fk.values.name}
+        />
+        {fk.errors.name && fk.touched.name && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"Please Enter a Valid Name"}
+          </Text>
+        )}
+
+        <DetailsForm
+          title={"Email Address"}
+          onChangeText={fk.handleChange("email")}
+          onBlur={fk.handleBlur("email")}
+          value={fk.values.email}
+        />
+        {fk.errors.email && fk.touched.email && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"invalid input , Enter a Valid Email"}
+          </Text>
+        )}
+
+        <DetailsForm
+          title={"Joining Date"}
+          onChangeText={fk.handleChange("dateOfJoining")}
+          onBlur={fk.handleBlur("dateOfJoining")}
+          value={fk.values.dateOfJoining}
+        />
+        {fk.errors.dateOfJoining && fk.touched.dateOfJoining && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"invalid input , only digits allowed"}
+          </Text>
+        )}
+
         {/* <DetailsForm title={"Role"} /> */}
         <View style={{ marginVertical: 5 }}>
           <Text style={{ fontWeight: "600", fontSize: 16, marginBottom: 9 }}>
@@ -68,28 +128,52 @@ const CreateOfferLetter = () => {
               marginTop: 9,
             }}
             placeholder="Select "
-            setSelected={setSelected}
+            setSelected={(value) => {
+              setSelected(value);
+              fk.setFieldValue("role", value);
+            }}
             data={data}
           />
         </View>
+        {fk.errors.role && fk.touched.role && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"Please select a Role"}
+          </Text>
+        )}
 
-        <DetailsForm title={"Department"} />
-        <DetailsForm title={"Offer Package"} />
-        <DetailsForm title={"Offer Package"} />
-        <DetailsForm title={"Offer Package"} />
-        <DetailsForm title={"Offer Package"} />
+        <DetailsForm
+          title={"Department"}
+          onChangeText={fk.handleChange("department")}
+          onBlur={fk.handleBlur("department")}
+          value={fk.values.department}
+        />
+        {fk.errors.department && fk.touched.department && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"Please Enter the Department"}
+          </Text>
+        )}
+
+        <DetailsForm
+          title={"Offer Package"}
+          onChangeText={fk.handleChange("offerPackage")}
+          onBlur={fk.handleBlur("offerPackage")}
+          value={fk.values.offerPackage}
+        />
+        {fk.errors.offerPackage && fk.touched.offerPackage && (
+          <Text style={{ color: "red", fontSize: 12, marginLeft: 5 }}>
+            {"invalid input , only digits allowed"}
+          </Text>
+        )}
 
         <TouchableOpacity
-          // onPress={() => {
-          //   navigation.navigate("CreateOfferLetter");
-          // }}
+          onPress={fk.handleSubmit}
           style={{
             backgroundColor: "#9A4D49",
             justifyContent: "center",
             alignItems: "center",
 
             borderRadius: 12,
-            marginTop: 10,
+            marginTop: 30,
             padding: 10,
           }}
         >

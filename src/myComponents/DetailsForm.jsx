@@ -5,7 +5,9 @@ import React from "react";
 const DetailsForm = ({ title, onChangeText, onBlur, value }) => {
   return (
     <View style={{ marginVertical: 5 }}>
-      <Text style={{ fontWeight: "600", fontSize: 16 }}>{title}</Text>
+      <Text style={{ fontWeight: "600", marginVertical: 9, fontSize: 16 }}>
+        {title}
+      </Text>
       <TextInput
         onChangeText={onChangeText}
         onBlur={onBlur}
@@ -15,7 +17,7 @@ const DetailsForm = ({ title, onChangeText, onBlur, value }) => {
           borderWidth: 0.5,
           borderRadius: 10,
           borderColor: "#7C7C7C",
-          marginVertical: 9,
+
           //   paddingVertical: 20,
           paddingHorizontal: 10,
         }}
