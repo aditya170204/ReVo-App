@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.yadavaditya17.revoJav"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -35,6 +36,11 @@
         "svgx"
       ],
       "transformer": "node_modules/react-native-svg-transformer/index.js"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "7af42549-f6f8-4c12-ae3c-fd8e6175dd97"
+      }
     }
   }
 }
